@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin:8;
+    background-color: #1C232E;
+}
+/* Card Container */
+.profile-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Adjust Container Styles */
+.profile-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Heading Styles */
+.profile-heading {
+    text-align: center;
+    color:#03484C;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styles */
+.profile-text {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Button Styles */
+.btn-login {
+    font-size: 15px;
+}
+
+/* Container for Buttons aligned horizontally, with space between */
+.profile-button:hover {
+    background: #0ee418;
+    align-items: center;
+}
+
+.profile-button {
+    border:none;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    background:#03484C;
+    padding: 15px 20px ;
+    border-radius: 5px;
+    cursor:pointer;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Error Message Styles */
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Loading Message Styles */
+.loading-message {
+    font-size: 16px;
+    color: #666;
+}
