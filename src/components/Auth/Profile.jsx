@@ -48,19 +48,26 @@ function Profile() {
     if (error) return <div className="error-message">Error: {error}</div>;
 
     return (
+        <div className="cuerpo">
         <div className="profile-container">
             <div className="profile-card">
                 {user ? (
-                    <div>
+                    <div >
                         <h1 className="profile-heading">User Profile</h1>
+                        <p className="profile-text">
+                            ID: {user.user__id}
+                        </p>
                         <p className="profile-text">
                             Nombre de usuario: {user.username}
                         </p>
                         <p className="profile-text">
-                            Nombre: {user.firstname}
+                            Nombre: {user.first_name}
                         </p>
                         <p className="profile-text">
-                            Apellido: {user.lastname}
+                            Apellido: {user.last_name}
+                        </p>
+                        <p className="profile-text">
+                        Biografia: {user.bio}
                         </p>
                         <p className="profile-text">Email: {user.email}</p>
                         <button className="profile-button" onClick={logout}>
@@ -89,6 +96,7 @@ function Profile() {
                     </div>
                 )}
             </div>
+        </div>
         </div>
     );
 }
