@@ -7,9 +7,7 @@ function NavBar() {
 
     return (
         <header className={styles.header}>
-        <div className={styles.logo}>
-            <a href="#"><img src="./contacto.png" alt="Logo"/></a>
-        </div>
+
 
           
           <nav>
