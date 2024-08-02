@@ -1,0 +1,18 @@
+.card {
+    margin: 10px;
+}
+
+.image {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.album-card img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Asegúrate de que la imagen sea un elemento de bloque */
+}
