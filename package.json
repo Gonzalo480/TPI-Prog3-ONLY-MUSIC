@@ -14,7 +14,7 @@
     "react": "^18.3.1",
     "react-audio-spectrum": "^0.1.5",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.25.1"
+    "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

@@ -1,0 +1,10 @@
+.new-song-form-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 200px;
+    color: var(--text-color);
+    font-family: "Titillium Web", sans-serif;
+  }

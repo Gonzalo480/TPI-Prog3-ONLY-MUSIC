@@ -53,21 +53,20 @@ function Profile() {
             <div className="profile-card">
                 {user ? (
                     <div >
-                        <h1 className="profile-heading">User Profile</h1>
+                        <h1 className="profile-heading">Perfil</h1>
+                        <img src="../../../public/user.png" alt="imagen usuario" />
+                        <br />
                         <p className="profile-text">
                             ID: {user.user__id}
                         </p>
                         <p className="profile-text">
-                            Nombre de usuario: {user.username}
+                            Usuario: {user.username}
                         </p>
                         <p className="profile-text">
                             Nombre: {user.first_name}
                         </p>
                         <p className="profile-text">
                             Apellido: {user.last_name}
-                        </p>
-                        <p className="profile-text">
-                        Biografia: {user.bio}
                         </p>
                         <p className="profile-text">Email: {user.email}</p>
                         <button className="profile-button" onClick={logout}>

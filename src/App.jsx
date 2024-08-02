@@ -3,17 +3,39 @@ import Login from "./components/Auth/Login";
 import Profile from "./components/Auth/Profile";
 import NavBar from "./components/NavBar";
 import FooterBar from "./components/FooterBar";
-import ProfileUpdate from './components/ProfileUpdate';
+import SideBar from "./components/SideBar";
+import React from "react";
+import SongList from './components/SongList';
+import NewSongForm from './components/NewSongForm';
+import Error from './components/Error';
+import SongDetail from './components/SongDetail';
+
+
 
 function App() {
-    switch (window.location.pathname) {
+   const token = localStorage.getItem("token");
+   switch (window.location.pathname) {
+      case "/":
+         return (
+            <div className="App">
+              {token ? <> <NavBar /> <SideBar />  <SongList /> <FooterBar /> </> : <> <NavBar /> <SideBar /> <Error /> <FooterBar /> </> }
+            </div>
+          );
+
         case "/login":
-           return <Login />;
+           return <> <NavBar /> <SideBar /> <Login /> <FooterBar /> </>;
         case "/profile":
-           return <>
-           <NavBar /> <Profile /> <FooterBar /> </>;
+           return <> <NavBar /> <SideBar /> <Profile /> <FooterBar /> </>;
+
+        case "/new" :
+           return <> <NavBar /> <SideBar /> <NewSongForm />  <FooterBar /> </>;
+
+         case `/song/${window.location.pathname.split("/")[2]}`:
+            const id = window.location.pathname.split("/")[2];
+            return <> <NavBar /> <SideBar />  <SongDetail id={id} /> <FooterBar /> </>;
+
         default:
-          return <Login />;
+          return  <> <NavBar /> <SideBar /> <Error /> <FooterBar /> </>;
   }
 }
 

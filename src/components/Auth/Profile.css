@@ -26,12 +26,19 @@
     text-align: center;
 }
 
+.profile-card img{
+    border-radius: 50%;
+    width: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 /* Adjust Container Styles */
 .profile-container {
+    padding-top: 10vh;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
 }
 
 /* Heading Styles */

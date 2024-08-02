@@ -1,16 +1,17 @@
 
 
 .piepagina {
-    width: 100%;
+    width: auto;
+    margin-left: 150px;
     background-color: var(--bg-color);
-    position: absolute;
+    position:unset;
+    bottom: 0;
   
 }
 
 .piepagina .grupo1 {
     width: 100%;
     max-width: 1200px;
-    margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 50px;

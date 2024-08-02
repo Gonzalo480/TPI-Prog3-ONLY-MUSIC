@@ -8,7 +8,7 @@ function SideBar() {
     return (
         <nav className={styles.sidebar_nav}>
       <div className={styles.logo}>
-        <a href="#"><img src="./Diseño-logo.png" alt="Logo"/></a>
+        <a href="#"><img src="../../public/Diseño-logo.png" alt="Logo"/></a>
     </div>
     <div>
         <a href="#" className={styles.enlacesa}>Inicio</a>

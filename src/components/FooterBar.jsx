@@ -8,8 +8,8 @@ function FooterBar() {
         <div className={styles.grupo1}>
             <div className={styles.box}>
             <figure>
-                <a href="./templates/contact.html">
-                <img src="./contacto.png" alt="Logo grupo 8" />
+                <a href="#">
+                <img src="../../public/contacto.png" alt="Logo grupo 8" />
                 </a>
             
             </figure>
