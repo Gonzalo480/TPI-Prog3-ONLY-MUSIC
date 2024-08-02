@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+
+:root {
+    --bg-color: #1c232e;
+    --primary-color: #03484c;
+    --secondary-color: #0f684b;
+    --third-color: #3b8952;
+    --third-bis-color: #53ac59;
+    --bg-input-color: #2D2D2D;
+    --text-color: whitesmoke;
+    --extra-color: #F00BB8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    
+
+    font-family: "Alata", sans-serif, "Arial";
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+.logo {
+    cursor: pointer;
+    padding-bottom: 20px;
+}
+
+.logo img {
+    height: 120px;
+    width: auto;
+   
+}
+
+.logo img:hover {
+    transform: scale(1.2);
+}
+
+
+
+.sidebar_nav {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1c232e;
+    overflow: hidden;
+    padding: 20px;
+    box-shadow: 6px 20px 10px var(--third-bis-color);
+    text-decoration: none;
+}
+
+.sidebar_nav .enlacesa {
+    padding: 16px;
+    text-shadow: 2px 2px 4px #000000;
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--secondary-color);
+    display: block;
+    text-align: justify;
+}
+
+.sidebar_nav .enlacesa:hover {
+    color: var(--extra-color);
+    font-weight: 700;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 3px 7px 5px var(--third-bis-color);
+    text-decoration: none;
+}
+
+.sidebar_nav i {
+    margin-right: 5px;
+}
+
+
