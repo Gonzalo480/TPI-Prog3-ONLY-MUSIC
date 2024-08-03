@@ -1,17 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// Crear el contexto
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-// Crear el proveedor del contexto
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-
         if (!token) {
             setIsLoading(false);
             return;
@@ -25,35 +21,31 @@ export const AuthProvider = ({ children }) => {
             },
             credentials: 'include',
         })
-            .then((response) => response.json())
-            .then((data) => {
-                setUser(data);
-                setIsLoading(false);
-            })
-            .catch((e) => {
-                setError(e.message);
-                setIsLoading(false);
-            });
+        .then(response => response.json())
+        .then(data => {
+            setUser(data);
+            setIsLoading(false);
+        })
+        .catch(() => {
+            setIsLoading(false);
+        });
     }, []);
 
-    const login = (username, password) => {
-        return fetch('https://sandbox.academiadevelopers.com/api-auth/', {
+    const login = async (username, password) => {
+        const response = await fetch('https://sandbox.academiadevelopers.com/api-auth/', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-type': 'application/json' },
             credentials: 'include',
-        })
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.json().then((data) => {
-                        localStorage.setItem('token', data.token);
-                        setUser(data);
-                        return data;
-                    });
-                } else {
-                    throw new Error('Usuario o contraseña incorrectos');
-                }
-            });
+        });
+
+        if (response.status === 200) {
+            const data = await response.json();
+            localStorage.setItem('token', data.token);
+            setUser(data);
+        } else {
+            throw new Error('Credenciales incorrectas');
+        }
     };
 
     const logout = () => {
@@ -62,8 +54,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, isLoading, error, login, logout }}>
+        <AuthContext.Provider value={{ user, isLoading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
+
+export { AuthProvider, AuthContext };
+

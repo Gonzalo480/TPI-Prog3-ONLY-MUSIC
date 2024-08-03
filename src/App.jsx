@@ -9,7 +9,8 @@ import SongList from './components/SongList';
 import NewSongForm from './components/NewSongForm';
 import Error from './components/Error';
 import SongDetail from './components/SongDetail';
-
+import Albums from './components/MusicPlayer/Albums';
+import Genres from './components/MusicPlayer/Genres';
 
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
            return <> <NavBar /> <SideBar /> <Login /> <FooterBar /> </>;
         case "/profile":
            return <> <NavBar /> <SideBar /> <Profile /> <FooterBar /> </>;
-
+        case "/albums":
+            return  <Albums />; 
+        case "/genres":
+            return  <Genres />;      
         case "/new" :
            return <> <NavBar /> <SideBar /> <NewSongForm />  <FooterBar /> </>;
 
