@@ -10,7 +10,7 @@ export function useFetchAlbums(page) {
         const doFetch = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://sandbox.academiadevelopers.com/harmonyhub/albums/`);
+                const response = await fetch(`https://sandbox.academiadevelopers.com/harmonyhub/albums/?page=${page}`);
                 if (!response.ok) {
                     throw new Error("No se pudieron cargar los álbumes");
                 }
