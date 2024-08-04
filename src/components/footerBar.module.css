@@ -1,9 +1,7 @@
-
-
 .piepagina {
     width: auto;
     margin-left: 150px;
-    background-color: var(--bg-color);
+    background-color: var(--bg-input-color);
     position:unset;
     bottom: 0;
   

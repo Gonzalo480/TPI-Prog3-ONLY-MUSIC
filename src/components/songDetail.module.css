@@ -1,4 +1,4 @@
-.song-detail-container{
+.songdetailcontainer{
   display: flex;
   justify-content: center;
   align-content: center;
@@ -9,7 +9,7 @@
   font-family: "Titillium Web", sans-serif;
 }
 
-.song-detail-container h1{
+.songdetailcontainer h1{
   color: var(--bg-input-color);
   text-shadow: 2px 2px 4px var(--neon-new);
   font-weight: bold;
@@ -23,15 +23,15 @@
 }
 
 
-audio::-webkit-media-controls-play-button {
+.songdetailcontainer audio::-webkit-media-controls-play-button {
   display: none;
 }
 
-audio {
+.songdetailcontainer audio {
   width: 100%;
 }
 
-button{
+.songdetailcontainer button{
   font-weight: 700;
   color: var(--text-color);
   padding: 9px 25px;

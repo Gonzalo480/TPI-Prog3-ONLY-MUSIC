@@ -13,10 +13,11 @@ export default function AlbumList() {
     }
 
     return (
-        <div>
+        <div className='contener'>
+        <div className='cuer' >
             {isError && <p className="error-message">No se pudieron cargar los álbumes</p>}
             <div className="my-5">
-                <h2 className="title">Lista de Álbumes</h2>
+                <h2 className="title2">Lista de Álbumes</h2>
                 <ul>
                     {albums.map(album => (
                         <div key={album.id} className="column is-two-thirds">
@@ -34,6 +35,7 @@ export default function AlbumList() {
                     </button>
                 )}
             </div>
+        </div>
         </div>
     );
 }

@@ -2,54 +2,31 @@
     display: flex;
     flex-wrap: wrap;
     background-color: var(--primary-color);
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     height: 10%;
-    padding: 5px 10%;
-    margin-left: 150px;
+    padding: 0 10%;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 1.5vh;
+    padding-top: 1.5vh;
 }
 
 .header .navlinks {
-    list-style: none;
-}
-
-.header .navlinks li {
-    display: inline-block;
-    padding: 0 20px;
-}
-
-.header .navlinks li:hover {
-    transform: scale(1.1);
-}
-
-.header .navlinks a {
-    font-size: large;
-    color: var(--text-color);
-    text-decoration: none;
-    text-shadow: 2px 2px 4px var(--neon-new);
-}
-
-.header .navlinks li a:hover {
-    color: var(--third-color);
-}
-
-.header .busqueda {
-    padding: 5px 20px;
-    margin-left: 5vw;
-    border: none;
-    font-size: 16px;
-    transition: all 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    gap: 1vw;
 }
 
 .header .botones {
-    padding: 3vh;
     display: flex;
     justify-content: space-between;
+    align-items:baseline;
     gap: 1vw;
 }
 
 .header .btn {
-    font-weight: 700;
     color: var(--text-color);
     padding: 9px 25px;
     background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
@@ -61,10 +38,77 @@
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    margin: 0 0.25em 0 0.25em;
+    text-align: center;
+    margin: 1em 1em 0 0.25em;
+    font-size: large;
+    width: 10vw;
+    max-height: 40px;
 }
 
 .header .btn:hover {
+    background-color: var(--text-color);
+    color: var(--third-color);
+    transform: scale(1.1);
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    text-align: center;
+}
+
+.busqueda {
+    margin-left: 5vw;
+    border: none;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.header .btn2 {
+    color: var(--text-color);
+    padding: 15px 30px;
+    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    border: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: var(--neon-color);
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    margin: 2em 0.25em 0 0.25em;
+    font-size: medium;
+    width: 10vw;
+    max-height: 43px;
+}
+
+.header .btn2:hover {
+    background-color: var(--text-color);
+    color: var(--third-color);
+    transform: scale(1.1);
+}
+
+.header .btn3 {
+    color: var(--text-color);
+    padding: 9px 25px;
+    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    border: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: var(--neon-color);
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    margin: 0 0.25em 0 0.25em;
+    font-size: medium;
+    width: 10vw;
+}
+
+.header .btn3:hover {
     background-color: var(--text-color);
     color: var(--third-color);
     transform: scale(1.1);

@@ -28,10 +28,10 @@ function FooterBar() {
             <div className={styles.box}>
             <h2>SIGUENOS</h2>
             <div className={styles.redsocial}>
-                <a href="#" className="fa fa-facebook"><span className={styles.nada}>.</span></a>
-                <a href="#" className="fa fa-instagram"><span className={styles.nada}>.</span></a>
-                <a href="#" className="fa fa-twitter"><span className={styles.nada}>.</span></a>
-                <a href="#" className="fa fa-youtube"><span className={styles.nada}>.</span></a>
+                <a href="https://www.facebook.com/" className="fa fa-facebook"><span className={styles.nada}>.</span></a>
+                <a href="https://www.instagram.com/" className="fa fa-instagram"><span className={styles.nada}>.</span></a>
+                <a href="https://x.com/" className="fa fa-twitter"><span className={styles.nada}>.</span></a>
+                <a href="https://www.youtube.com/" className="fa fa-youtube"><span className={styles.nada}>.</span></a>
             </div>
             </div>
         </div>

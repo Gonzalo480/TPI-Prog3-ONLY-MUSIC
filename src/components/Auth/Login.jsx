@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import './Login.css';
+import styles from "./login.module.css";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -19,10 +18,12 @@ function Login() {
     };
 
     return (
-        <form className="formulario" onSubmit={handleSubmit}>
+        <div className={styles.cuerpo}>
+        <form className={styles.formulario} onSubmit={handleSubmit}>
             <h1>Login</h1>
-            <div className="contenedor">
-                <div className="input-contenedor">
+            <br />
+            <div className={styles.contenedor}>
+                <div className={styles.inputcontenedor}>
                     <ion-icon name="mail"></ion-icon>
                     <input
                         type="text"
@@ -31,7 +32,7 @@ function Login() {
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
-                <div className="input-contenedor">
+                <div className={styles.inputcontenedor}>
                     <ion-icon name="key"></ion-icon>
                     <input
                         type="password"
@@ -40,11 +41,12 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <input type="submit" value="Login" className="button" />
-                <p>Al registrarse acepta nuestras condiciones de uso y Politicas de seguridad</p>
-                <p>¿No tienes una cuenta? <a className="link" href="registro.html">Registrate</a></p>
+                <input type="submit" value="Login" className={styles.button} />
+                <br />
+                <p>Ingresar para acceder y disfrutar del servicio de ONLY-MUSIC </p>
             </div>
         </form>
+        </div>
     );
 }
 

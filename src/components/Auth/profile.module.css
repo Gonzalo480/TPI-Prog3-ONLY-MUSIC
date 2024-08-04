@@ -1,20 +1,9 @@
-:root {
-    --bg-color: #1c232e;
-    --primary-color: #03484c;
-    --secondary-color: #0f684b;
-    --third-color: #3b8952;
-    --third-bis-color: #53ac59;
-    --bg-input-color: #2D2D2D;
-    --text-color: whitesmoke;
-    --neon-color: #F00BB8;
-}
-
 .cuerpo {
     margin:8;
     background-color: var(--bg-color);
 }
-/* Card Container */
-.profile-card {
+
+.profilecard {
     background-color: var(--text-color);
     border: 1px solid var(--neon-color);
     border-radius: 8px;
@@ -26,14 +15,14 @@
     text-align: center;
 }
 
-.profile-card img{
+.profilecard img{
     border-radius: 50%;
     width: 200px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* Adjust Container Styles */
-.profile-container {
+
+.profilecontainer {
     padding-top: 10vh;
     height: 100vh;
     display: flex;
@@ -41,33 +30,33 @@
     align-items: baseline;
 }
 
-/* Heading Styles */
-.profile-heading {
+
+.profileheading {
     text-align: center;
     color:var(--primary-color);
     font-size: 40px;
     margin-bottom: 20px;
+    text-shadow: 0 1px 1px #000000;
 }
 
-/* Paragraph Styles */
-.profile-text {
+
+.profiletext {
     font-size: 16px;
     color: var(--primary-color);
     margin-bottom: 10px;
 }
 
-/* Button Styles */
-.btn-login {
+
+.btnlogin {
     font-size: 15px;
 }
 
-/* Container for Buttons aligned horizontally, with space between */
-.profile-button:hover {
+.profilebutton:hover {
     background: var(--third-bis-color);
     align-items: center;
 }
 
-.profile-button {
+.profilebutton {
     border:none;
     width: 100%;
     color:  var(--text-color);
@@ -82,14 +71,12 @@
     margin-top: 20px;
 }
 
-/* Error Message Styles */
-.error-message {
+.errormessage {
     color: red;
     margin-bottom: 10px;
 }
 
-/* Loading Message Styles */
-.loading-message {
+.loadingmessage {
     font-size: 16px;
-    color: #666;
+    color: var(--third-bis-color);
 }

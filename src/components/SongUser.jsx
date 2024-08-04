@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./songList.module.css";
 import DeleteSong from "./DeleteSong";
+import { AuthContext } from '../context/AuthContext';
 
 function togglePlayPause(event) {
   const element = event.currentTarget;
@@ -29,7 +30,8 @@ function togglePlayPause(event) {
   }
 }
 
-function SongList() {
+function SongUser() {
+  const { user } = useContext(AuthContext); // Get user information from AuthContext
   const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,7 +41,7 @@ function SongList() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (!token) {
+    if (!token || !user) {
       setIsLoading(false);
       return;
     }
@@ -47,12 +49,12 @@ function SongList() {
     const fetchSongs = async () => {
       try {
         const response = await fetch(
-          `https://sandbox.academiadevelopers.com/harmonyhub/songs/?page=${page}`,
+          `https://sandbox.academiadevelopers.com/harmonyhub/songs/?owner=${user.user__id}&page=${page}`,
           {
             method: "GET",
             headers: {
               "Content-type": "application/json",
-              Authorization: `Token ${token}`,
+              Authorization: `Bearer ${token}`,
             },
             credentials: "include",
           }
@@ -73,7 +75,7 @@ function SongList() {
     };
 
     fetchSongs();
-  }, [page]);
+  }, [page, user]);
 
   const handleNextPage = () => {
     if (hasMore) {
@@ -100,7 +102,7 @@ function SongList() {
 
   return (
     <div className={styles.songlistcontainer}>
-      <h1>Lista de Canciones</h1>
+      <h1>Lista de tus Canciones</h1>
       <br />
       <div className={styles.paginationbuttons}>
         <button
@@ -151,10 +153,12 @@ function SongList() {
                 </div>
               </td>
               <td>
-                <a href={`/song/${song.id}`}>Ver Canción<i className="fa-solid fa-headphones"></i></a>
+                <a href={`/song/${song.id}`}>Ver Canción   <i className="fa-solid fa-headphones"></i></a>
               </td>
-              <td><button onClick={() => handleEdit(song.id)}><span> Editar<i className="fa-solid fa-pen-to-square"></i></span></button>
-              <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} /></td>
+              <td>
+                <button onClick={() => handleEdit(song.id)}>Editar  <i className="fa-solid fa-pen-to-square"></i></button>
+                <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -180,4 +184,4 @@ function SongList() {
   );
 }
 
-export default SongList;
+export default SongUser;

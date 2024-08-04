@@ -1,4 +1,4 @@
-.song-list-container{
+.songlistcontainer{
     display: flex;
     justify-content: center;
     align-content: center;
@@ -9,7 +9,7 @@
     font-family: "Titillium Web", sans-serif;
 }
 
-.song-list-container h1{
+.songlistcontainer h1{
     color: var(--bg-input-color);
     text-shadow: 2px 2px 4px var(--neon-new);
 
@@ -24,15 +24,14 @@
     
 }
 
-.pagination-buttons{
+.paginationbuttons{
     display: flex;
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.pagination-buttons button{
-    font-weight: 700;
+.paginationbuttons button{
     color: var(--text-color);
     padding: 9px 25px;
     background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
@@ -45,20 +44,19 @@
     cursor: pointer;
     transition: all 0.3s ease 0s;
     margin: 0 0.2em 0 0.2em;
+    font-size: large;
 }
 
-.page-number {
+.paginationbuttons button:hover {
+    background-color: var(--text-color);
+    color: var(--third-color);
+    transform: scale(1.1);
+}
+
+.pagenumber {
     margin-left: 25px;
     margin-right: 25px;
 }
-
-.cont3 {
-    background: var(--bg-color);
-    display: flex;
-    align-items:center;
-    justify-content:space-around;
-}
-
 
 table {
     width: 100%;
@@ -110,4 +108,27 @@ table tbody tr:hover {
 
 table tbody td:hover {
     background-color: rgba(19, 225, 70 , 0.2);
+}
+
+
+table td button {
+    color: var(--text-color);
+    padding: 9px 25px;
+    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    border: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: var(--neon-color);
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    margin: 0 0.2em 0 0.2em;
+    font-size: small;
+}
+
+table td  button:hover {
+    background-color: var(--text-color);
+    color: var(--third-color);
+    transform: scale(1.1);
 }

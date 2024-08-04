@@ -1,0 +1,75 @@
+.cuerpo{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:80px;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor{
+    width: 100%;
+    padding: 15px;
+}
+
+
+.formulario{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--text-color);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 50px;
+    background-color: var(--text-color);
+    border: 1px solid var(--neon-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-shadow: 0 1px 1px #000000;
+}
+
+h1{
+    text-align: center;
+    color:var(--primary-color);
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], 
+input[type="password"]{
+    font-size: 20px;
+    width: 80%;
+    margin: 10px;
+    padding: 10px;
+    border:none;
+}
+
+.inputcontenedor{
+    margin-bottom: 15px;
+    border: none ;
+}
+
+.icon{
+    width: 200px;
+    text-align: center;
+    color:var(--text-color);
+}
+
+.button{
+    border:none;
+    width: 100%;
+    color: var(--text-color);
+    font-size: 20px;
+    background: var(--bg-input-color);
+    padding: 15px 20px ;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+.button:hover{
+    background: var(--third-bis-color);
+}
+
+p{
+    text-align: center;
+}

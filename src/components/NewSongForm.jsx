@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./NewSongForm.css";
+import styles from "./newSongForm.module.css";
 
 function NewSongForm() {
   const [title, setTitle] = useState("");
@@ -8,7 +8,7 @@ function NewSongForm() {
   const [duration, setDuration] = useState("");
   const [artists, setArtists] = useState([]);
   const [genres, setGenres] = useState([]);
-  const [songFile, setSongFile] = useState(null);
+  const [songFile, setSongFile] = useState("Ningún archivo seleccionado");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -56,72 +56,110 @@ function NewSongForm() {
     }
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSongFile(file ? file.name : "Ningún archivo seleccionado");
+  };
+
   return (
-    <div className="new-song-form-container">
-      <h1>Crear Nueva Canción</h1>
-      {error && <div className="error-message">{error}</div>}
-      {success && <div className="success-message">Canción creada con éxito.</div>}
-      <form onSubmit={handleSubmit} className="new-song-form">
-        <label>
-          Título:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Año:
-          <input
-            type="number"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-        </label>
-        <label>
-          Álbum:
-          <input
-            type="number"
-            value={album}
-            onChange={(e) => setAlbum(e.target.value)}
-          />
-        </label>
-        <label>
-          Duración (segundos):
-          <input
-            type="number"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-          />
-        </label>
-        <label>
-          Artistas (IDs separados por comas):
-          <input
-            type="text"
-            value={artists}
-            onChange={(e) => setArtists(e.target.value.split(","))}
-          />
-        </label>
-        <label>
-          Géneros (IDs separados por comas):
-          <input
-            type="text"
-            value={genres}
-            onChange={(e) => setGenres(e.target.value.split(","))}
-          />
-        </label>
-        <label>
-          Archivo de la canción:
-          <input
-            type="file"
-            onChange={(e) => setSongFile(e.target.files[0])}
-          />
-        </label>
-        <button type="submit">Crear Canción</button>
-      </form>
+    <div className={styles.cuerp}>
+      <h1 className={styles.acheuno}>Crear Nueva Canción</h1>
+      <div>
+          {error && <div className="error-message">{error}</div>}
+          {success && <div className="success-message">Canción creada con éxito.</div>}
+        </div>
+      <div >
+        <div className={styles.contenido}>
+          <form onSubmit={handleSubmit} className={styles.newsongformcontainer}>
+            <label>
+              Título: <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </label>
+            <br />
+            <label>
+              Año: <br />
+              <input
+                className={styles.miinput}
+                type="number"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Álbum: <br />
+              <input
+                className={styles.miinput}
+                type="number"
+                value={album}
+                onChange={(e) => setAlbum(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Duración (segundos): <br />
+              <input
+                className={styles.miinput}
+                type="number"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Artistas (IDs separados por comas): <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={artists}
+                onChange={(e) => setArtists(e.target.value.split(","))}
+              />
+            </label>
+            <br />
+            <label>
+              Géneros (IDs separados por comas): <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={genres}
+                onChange={(e) => setGenres(e.target.value.split(","))}
+              />
+            </label>
+            <br />
+            <label>
+              Archivo de la canción: <br />
+              <br />
+              <input
+                className={styles.miinput}
+                type="file"
+                onChange={handleFileChange}
+                id="file-upload"
+                style={{ display: "none" }}
+              />
+              <button
+                type="button"
+                className={styles.customfileupload}
+                onClick={() => document.getElementById("file-upload").click()}
+              >
+                Seleccionar archivo
+              </button>
+              <span className={styles.filename}>{songFile}</span>
+            </label>
+            <br />
+            <br />
+            <button className={styles.buttonnew} type="submit">Crear Canción</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default NewSongForm;
+

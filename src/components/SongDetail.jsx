@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./SongDetail.css";
+import styles from "./songDetail.module.css";
+import DeleteSong from "./DeleteSong";
 
 function SongDetail() {
   const id = window.location.pathname.split("/")[2];
@@ -135,11 +136,20 @@ function SongDetail() {
     };
   }, [audioStarted]);
 
+  const handleEdit = (songId) => {
+    window.location.href = `/update/${songId}`;
+  };
+
+  const handleDeleteSuccess = () => {
+    window.location.href = window.location.href;
+  };
+
+
   if (isLoading) return <div className="loading-message">Loading...</div>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
   return (
-    <div className="song-detail-container">
+    <div className={styles.songdetailcontainer}>
       {song && (
         <>
           <h1>{song.title}</h1>
@@ -147,6 +157,9 @@ function SongDetail() {
           <p>Artistas: {song.artists.join(", ")}</p>
           <p>Géneros: {song.genres.join(", ")}</p>
           <p>Año: {song.year}</p>
+          <p>Visitas / Reproducciones:  {song.view_count}</p>
+          <button onClick={() => handleEdit(song.id)}>Editar  <i className="fa-solid fa-pen-to-square"></i></button>
+              <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} />
 
           <canvas ref={canvasRef} width="800" height="200" />
           {!audioStarted ? (
@@ -172,10 +185,3 @@ function SongDetail() {
 }
 
 export default SongDetail;
-
-
-
-
-
-
-
