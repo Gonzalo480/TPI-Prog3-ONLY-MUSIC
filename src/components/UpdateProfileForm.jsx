@@ -15,251 +15,254 @@ function UpdateProfileForm() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-      fetchUserData();
+    fetchUserData();
   }, [userId]);
 
   const fetchUserData = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-          Swal.fire({
-              title: 'Error',
-              text: 'Debe iniciar sesión para actualizar su perfil.',
-              icon: 'error',
-              confirmButtonText: 'OK',
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              allowEnterKey: false
-          });
-          setError("Debe iniciar sesión para actualizar su perfil.");
-          return;
-      }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        title: "Error",
+        text: "Debe iniciar sesión para actualizar su perfil.",
+        icon: "error",
+        confirmButtonText: "OK",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      });
+      setError("Debe iniciar sesión para actualizar su perfil.");
+      return;
+    }
 
-      try {
-          const response = await fetch(
-              `https://sandbox.academiadevelopers.com/users/profiles/${userId}`,
-              {
-                  method: "GET",
-                  headers: {
-                      "Content-type": "application/json",
-                      Authorization: `Token ${token}`,
-                  },
-                  credentials: "include",
-              }
-          );
+    try {
+      const response = await fetch(
+        `https://sandbox.academiadevelopers.com/users/profiles/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+          credentials: "include",
+        }
+      );
 
-          if (response.ok) {
-              const userData = await response.json();
-              setUsername(userData.username);
-              setFirstName(userData.first_name);
-              setLastName(userData.last_name);
-              setEmail(userData.email);
-              setDob(userData.dob || "");
-              setBio(userData.bio || "");
-          } else {
-              Swal.fire({
-                  title: 'Error',
-                  text: 'Error al cargar los datos del usuario.',
-                  icon: 'error',
-                  confirmButtonText: 'OK',
-                  allowOutsideClick: false,
-                  allowEscapeKey: false,
-                  allowEnterKey: false
-              });
-              setError("Error al cargar los datos del usuario.");
-          }
-      } catch (e) {
-          Swal.fire({
-              title: 'Error',
-              text: 'Error de red al cargar los datos del usuario.',
-              icon: 'error',
-              confirmButtonText: 'OK',
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              allowEnterKey: false
-          });
-          setError("Error de red al cargar los datos del usuario.");
+      if (response.ok) {
+        const userData = await response.json();
+        setUsername(userData.username);
+        setFirstName(userData.first_name);
+        setLastName(userData.last_name);
+        setEmail(userData.email);
+        setDob(userData.dob || "");
+        setBio(userData.bio || "");
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: "Error al cargar los datos del usuario.",
+          icon: "error",
+          confirmButtonText: "OK",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+        });
+        setError("Error al cargar los datos del usuario.");
       }
+    } catch (e) {
+      Swal.fire({
+        title: "Error",
+        text: "Error de red al cargar los datos del usuario.",
+        icon: "error",
+        confirmButtonText: "OK",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      });
+      setError("Error de red al cargar los datos del usuario.");
+    }
   };
 
   const handleSubmit = async (event) => {
-      event.preventDefault();
-      setError(null);
-      setSuccess(false);
+    event.preventDefault();
+    setError(null);
+    setSuccess(false);
 
-      const token = localStorage.getItem("token");
-      if (!token) {
-          Swal.fire({
-              title: 'Error',
-              text: 'Debe iniciar sesión para actualizar su perfil.',
-              icon: 'error',
-              confirmButtonText: 'OK',
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              allowEnterKey: false
-          });
-          setError("Debe iniciar sesión para actualizar su perfil.");
-          return;
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Swal.fire({
+        title: "Error",
+        text: "Debe iniciar sesión para actualizar su perfil.",
+        icon: "error",
+        confirmButtonText: "OK",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      });
+      setError("Debe iniciar sesión para actualizar su perfil.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("first_name", firstName);
+    formData.append("last_name", lastName);
+    formData.append("email", email);
+    formData.append("dob", dob);
+    formData.append("bio", bio);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    try {
+      const response = await fetch(
+        `https://sandbox.academiadevelopers.com/users/profiles/${userId}/`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+          body: formData,
+          credentials: "include",
+        }
+      );
+
+      if (response.ok) {
+        setSuccess(true);
+        Swal.fire({
+          title: "Éxito",
+          text: "Perfil actualizado con éxito.",
+          icon: "success",
+          confirmButtonText: "OK",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+        }).then(() => {
+          window.location.href = "/profile";
+        });
+      } else {
+        const errorData = await response.json();
+        Swal.fire({
+          title: "Error",
+          text: errorData.message || "Error al actualizar el perfil.",
+          icon: "error",
+          confirmButtonText: "OK",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+        });
+        setError(errorData.message || "Error al actualizar el perfil.");
       }
-
-      const formData = new FormData();
-      formData.append("username", username);
-      formData.append("first_name", firstName);
-      formData.append("last_name", lastName);
-      formData.append("email", email);
-      formData.append("dob", dob);
-      formData.append("bio", bio);
-      if (image) {
-          formData.append("image", image);
-      }
-
-      try {
-          const response = await fetch(
-              `https://sandbox.academiadevelopers.com/users/profiles/${userId}/`,
-              {
-                  method: "PUT",
-                  headers: {
-                      Authorization: `Token ${token}`,
-                  },
-                  body: formData,
-                  credentials: "include",
-              }
-          );
-
-          if (response.ok) {
-              setSuccess(true);
-              Swal.fire({
-                  title: 'Éxito',
-                  text: 'Perfil actualizado con éxito.',
-                  icon: 'success',
-                  confirmButtonText: 'OK',
-                  allowOutsideClick: false,
-                  allowEscapeKey: false,
-                  allowEnterKey: false
-              }).then(() => {
-                  window.location.href = '/profile';
-              });
-          } else {
-              const errorData = await response.json();
-              Swal.fire({
-                  title: 'Error',
-                  text: errorData.message || 'Error al actualizar el perfil.',
-                  icon: 'error',
-                  confirmButtonText: 'OK',
-                  allowOutsideClick: false,
-                  allowEscapeKey: false,
-                  allowEnterKey: false
-              });
-              setError(errorData.message || "Error al actualizar el perfil.");
-          }
-      } catch (e) {
-          Swal.fire({
-              title: 'Error',
-              text: 'Error de red al actualizar el perfil. Por favor, intente nuevamente.',
-              icon: 'error',
-              confirmButtonText: 'OK',
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              allowEnterKey: false
-          });
-          setError("Error de red al actualizar el perfil.");
-      }
+    } catch (e) {
+      Swal.fire({
+        title: "Error",
+        text: "Error de red al actualizar el perfil. Por favor, intente nuevamente.",
+        icon: "error",
+        confirmButtonText: "OK",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      });
+      setError("Error de red al actualizar el perfil.");
+    }
   };
 
   const handleImageChange = (e) => {
-      setImage(e.target.files[0]);
+    setImage(e.target.files[0]);
   };
 
-
-return (
-<div className={styles.cuerp}>
-<h1 className={styles.acheuno}>Actualizar Perfil</h1>
-<div className="update-profile-form-container">
-<div>
-{error && <div className="error-message">{error}</div>}
-{success && <div className="success-message">Perfil actualizado con éxito.</div>}
-</div>
-<div className={styles.contenido}>
-<form onSubmit={handleSubmit} className={styles.newsongformcontainer}>
-<label>
-Usuario: <br />
-<input
-className={styles.miinput}
-type="text"
-value={username}
-onChange={(e) => setUsername(e.target.value)}
-required
-/>
-</label>
-<br />
-<label>
-Nombre: <br />
-<input
-className={styles.miinput}
-type="text"
-value={firstName}
-onChange={(e) => setFirstName(e.target.value)}
-required
-/>
-</label>
-<br />
-<label>
-Apellido: <br />
-<input
-className={styles.miinput}
-type="text"
-value={lastName}
-onChange={(e) => setLastName(e.target.value)}
-required
-/>
-</label>
-<br />
-<label>
-Email: <br />
-<input
-className={styles.miinput}
-type="email"
-value={email}
-onChange={(e) => setEmail(e.target.value)}
-required
-/>
-</label>
-<br />
-<label>
-Fecha de nacimiento: <br />
-<input
-className={styles.miinput}
-type="date"
-value={dob}
-onChange={(e) => setDob(e.target.value)}
-/>
-</label>
-<br />
-<label>
-Biografía: <br />
-<textarea
-className={styles.miinput}
-value={bio}
-onChange={(e) => setBio(e.target.value)}
-maxLength={1000}
-/>
-</label>
-<br />
-<label>
-Imagen de perfil: <br />
-<input
-className={styles.miinput}
-type="file"
-onChange={handleImageChange}
-accept="image/*"
-/>
-</label>
-<br />
-<button className={styles.buttonnew} type="submit">Actualizar Perfil</button>
-</form>
-</div>
-</div>
-</div>
-);
+  return (
+    <div className={styles.cuerp}>
+      <h1 className={styles.acheuno}>Actualizar Perfil</h1>
+      <div className="update-profile-form-container">
+        <div>
+          {error && <div className="error-message">{error}</div>}
+          {success && (
+            <div className="success-message">Perfil actualizado con éxito.</div>
+          )}
+        </div>
+        <div className={styles.contenido}>
+          <form onSubmit={handleSubmit} className={styles.newsongformcontainer}>
+            <label>
+              Usuario: <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </label>
+            <br />
+            <label>
+              Nombre: <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </label>
+            <br />
+            <label>
+              Apellido: <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </label>
+            <br />
+            <label>
+              Email: <br />
+              <input
+                className={styles.miinput}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <br />
+            <label>
+              Fecha de nacimiento: <br />
+              <input
+                className={styles.miinput}
+                type="date"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Biografía: <br />
+              <textarea
+                className={styles.miinput}
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                maxLength={1000}
+              />
+            </label>
+            <br />
+            <label>
+              Imagen de perfil: <br />
+              <input
+                className={styles.miinput}
+                type="file"
+                onChange={handleImageChange}
+                accept="image/*"
+              />
+            </label>
+            <br />
+            <button className={styles.buttonnew} type="submit">
+              Actualizar Perfil
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default UpdateProfileForm;

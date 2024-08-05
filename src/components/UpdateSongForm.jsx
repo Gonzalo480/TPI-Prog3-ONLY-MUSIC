@@ -195,7 +195,7 @@ function UpdateSongForm() {
               />
             </label>
             <br />
-            <button className={styles.buttonupdate} type="submit">Actualizar Canción</button>
+            <button className={styles.buttonnew} type="submit">Actualizar Canción</button>
           </form>
           <br />
           <br />
