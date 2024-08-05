@@ -4,7 +4,7 @@
     align-content: center;
     flex-direction: column;
     width: 80%;
-    margin-left: 200px;
+    margin-left: 16vw;
     color: var(--text-color);
     font-family: "Titillium Web", sans-serif;
 }
@@ -22,6 +22,17 @@
     display: inline;
     background: var(--third-bis-color);
     
+}
+
+.songlistcontainer h2{
+    color: var(--text-color);
+    text-shadow: 2px 2px 4px var(--neon-new);
+    font-weight: bold;
+    padding: 0.5vw;
+    margin-top: 10px;
+    font-size: xx-large;
+    display: inline;
+    text-align: center;
 }
 
 .paginationbuttons{
@@ -110,7 +121,6 @@ table tbody td:hover {
     background-color: rgba(19, 225, 70 , 0.2);
 }
 
-
 table td button {
     color: var(--text-color);
     padding: 9px 25px;
@@ -131,4 +141,104 @@ table td  button:hover {
     background-color: var(--text-color);
     color: var(--third-color);
     transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+    .songlistcontainer {
+        margin-left: 10vw;
+    }
+
+    .paginationbuttons {
+        margin-top: 2.5vh;
+        margin-bottom: 2.5vh;
+    }
+
+    .paginationbuttons button {
+        padding: 0.4vh 1.2vw;
+    }
+
+    .pagenumber {
+        margin-left: 1vw;
+        margin-right: 1vw;
+    }
+
+    table th, table td {
+        font-size: 0.75vh;
+        padding: 0.8vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .songlistcontainer {
+        margin-left: 8vw;
+    }
+
+    .paginationbuttons {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+
+    .paginationbuttons button {
+        padding: 0.35vh 1.1vw;
+    }
+
+    .pagenumber {
+        margin-left: 0.8vw;
+        margin-right: 0.8vw;
+    }
+
+    table th, table td {
+        font-size: 0.7vh;
+        padding: 0.7vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .songlistcontainer {
+        margin-left: 6vw;
+    }
+
+    .paginationbuttons {
+        margin-top: 1.5vh;
+        margin-bottom: 1.5vh;
+    }
+
+    .paginationbuttons button {
+        padding: 0.3vh 1vw;
+    }
+
+    .pagenumber {
+        margin-left: 0.6vw;
+        margin-right: 0.6vw;
+    }
+
+    table th, table td {
+        font-size: 0.6vh;
+        padding: 0.6vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .songlistcontainer {
+        margin-left: 4vw;
+    }
+
+    .paginationbuttons {
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+
+    .paginationbuttons button {
+        padding: 0.25vh 0.9vw;
+    }
+
+    .pagenumber {
+        margin-left: 0.5vw;
+        margin-right: 0.5vw;
+    }
+
+    table th, table td {
+        font-size: 0.5vh;
+        padding: 0.5vh;
+    }
 }

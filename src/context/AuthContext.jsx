@@ -23,7 +23,12 @@ const AuthProvider = ({ children }) => {
         })
         .then(response => response.json())
         .then(data => {
-            setUser(data);
+            if (data.user__id) {
+                setUser(data);
+            } else {
+                console.error("El campo 'user__id' no está presente en los datos del usuario.");
+                setUser(null);
+            }
             setIsLoading(false);
         })
         .catch(() => {
@@ -51,6 +56,7 @@ const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);
+        window.location.href ='/';
     };
 
     return (
@@ -61,4 +67,3 @@ const AuthProvider = ({ children }) => {
 };
 
 export { AuthProvider, AuthContext };
-

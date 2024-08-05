@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 
+
 function DeleteSong({ songId, onDeleteSuccess }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState(null);
 
   const handleDelete = async () => {
-    if (!window.confirm('¿Estás seguro de que quieres eliminar esta canción?')) {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Estás seguro de que quieres eliminar esta canción?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false
+    });
+
+    if (!result.isConfirmed) {
       return;
     }
 
@@ -15,7 +28,15 @@ function DeleteSong({ songId, onDeleteSuccess }) {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      setError('Debe iniciar sesión para eliminar una canción.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Debe iniciar sesión para eliminar una canción.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      });
       setIsDeleting(false);
       return;
     }
@@ -33,16 +54,41 @@ function DeleteSong({ songId, onDeleteSuccess }) {
       );
 
       if (response.ok) {
-        alert('Canción eliminada con éxito.');
-        if (onDeleteSuccess) {
-          onDeleteSuccess();
-        }
+        Swal.fire({
+          title: 'Eliminado',
+          text: 'La canción ha sido eliminada con éxito.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        }).then(() => {
+          if (onDeleteSuccess) {
+            onDeleteSuccess();
+          }
+        });
       } else {
         const errorData = await response.json();
-        setError(errorData.message || 'Error al eliminar la canción.');
+        Swal.fire({
+          title: 'Error',
+          text: errorData.message || 'Error al eliminar la canción.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        });
       }
     } catch (e) {
-      setError('Error de red al intentar eliminar la canción.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Error de red al intentar eliminar la canción.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      });
     } finally {
       setIsDeleting(false);
     }

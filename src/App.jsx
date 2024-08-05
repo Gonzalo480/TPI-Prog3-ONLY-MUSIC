@@ -15,6 +15,7 @@ import UpdateSongForm from './components/UpdateSongForm';
 import SongUser from './components/SongUser';
 import SearchResults from './components/SearchResults';
 import UpdateProfileForm from './components/UpdateProfileForm';
+import Inicio from './components/Inicio';
 
 function App() {
   const token = localStorage.getItem("token");
@@ -25,7 +26,7 @@ function App() {
         <NavBar />
         <SideBar />
         <Routes>
-          <Route path="/" element={token ? <SongUser /> : <Error />} />
+          <Route path="/" element={token ? <SongUser /> : <Inicio />} />
           <Route path="/songsuser" element={<SongUser />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />

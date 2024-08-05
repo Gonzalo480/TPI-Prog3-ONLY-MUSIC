@@ -23,9 +23,13 @@ function Profile() {
                             <p className={styles.profiletext}>Email: {user.email}</p>
                             <p className={styles.profiletext}>Biografia: {user.bio}</p>
                             
-                            <button className={styles.profilebutton} onClick={logout}>Logout</button>
-                            <br />
+                            
+                            <button className={styles.profilebutton} onClick={() => (window.location.href = `/songsuser`)}>Mis Canciones Subidas</button>
+                            <button className={styles.profilebutton} onClick={() => (window.location.href = `/songsuser`)}>Mis PlayList</button>
                             <button className={styles.profilebutton} onClick={() => (window.location.href = `/updateprofile/${user.user__id}`)}>Actualizar</button>
+                            <br />
+                            <button className={styles.profilebutton} onClick={logout}>Cerrar la sesión</button>
+                            <br />
                         </div>
                     ) : (
                         <div>
@@ -37,6 +41,7 @@ function Profile() {
                     )}
                 </div>
             </div>
+            <br /><br /><br />
         </div>
     );
 }

@@ -180,6 +180,7 @@ function SongDetail() {
           />
         </>
       )}
+      <br /><br />
     </div>
   );
 }

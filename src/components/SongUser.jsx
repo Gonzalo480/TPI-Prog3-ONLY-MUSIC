@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./songList.module.css";
 import DeleteSong from "./DeleteSong";
 import { AuthContext } from '../context/AuthContext';
+import useFetchData from '../hooks/useFetchData'; // Importa el hook
 
 function togglePlayPause(event) {
   const element = event.currentTarget;
@@ -31,16 +32,17 @@ function togglePlayPause(event) {
 }
 
 function SongUser() {
-  const { user } = useContext(AuthContext); // Get user information from AuthContext
+  const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
   const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  const { albums, genres, artists, isLoading: isDataLoading, error: dataError } = useFetchData(token);
 
+  useEffect(() => {
     if (!token || !user) {
       setIsLoading(false);
       return;
@@ -75,7 +77,7 @@ function SongUser() {
     };
 
     fetchSongs();
-  }, [page, user]);
+  }, [page, user, token]);
 
   const handleNextPage = () => {
     if (hasMore) {
@@ -97,12 +99,12 @@ function SongUser() {
     window.location.href = window.location.href;
   };
 
-  if (isLoading) return <div className="loading-message">Loading...</div>;
-  if (error) return <div className="error-message">Error: {error}</div>;
+  if (isLoading || isDataLoading) return <div className="loading-message">Loading...</div>;
+  if (error || dataError) return <div className="error-message">Error: {error || dataError}</div>;
 
   return (
     <div className={styles.songlistcontainer}>
-      <h1>Lista de tus Canciones</h1>
+      <h1>Canciones Subidas</h1>
       <br />
       <div className={styles.paginationbuttons}>
         <button
@@ -132,8 +134,9 @@ function SongUser() {
             <th>Géneros</th>
             <th>Año</th>
             <th>Visitas</th>
+            <th>ID</th>
             <th>Reproducir</th>
-            <th>ver</th>
+            <th>Ver</th>
             <th>Editar</th>
           </tr>
         </thead>
@@ -141,11 +144,12 @@ function SongUser() {
           {songs.map((song) => (
             <tr key={song.id}>
               <td>{song.title}</td>
-              <td>{song.album}</td>
-              <td>{song.artists.join(", ")}</td>
-              <td>{song.genres.join(", ")}</td>
+              <td>{albums[song.album]}</td>
+              <td>{song.artists.map((artistId) => artists[artistId]).join(", ")}</td>
+              <td>{song.genres.map((genreId) => genres[genreId]).join(", ")}</td>
               <td>{song.year}</td>
               <td>{song.view_count}</td>
+              <td>{song.id}</td>
               <td>
                 <div className="music-item" onClick={togglePlayPause}>
                   <i className="play-icon fas fa-play"></i><br />
@@ -153,11 +157,19 @@ function SongUser() {
                 </div>
               </td>
               <td>
-                <a href={`/song/${song.id}`}>Ver Canción   <i className="fa-solid fa-headphones"></i></a>
+                <a href={`/song/${song.id}`}>Ver Canción <i className="fa-solid fa-headphones"></i></a>
               </td>
               <td>
-                <button onClick={() => handleEdit(song.id)}>Editar  <i className="fa-solid fa-pen-to-square"></i></button>
-                <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} />
+                {user && user.user__id === song.owner ? (
+                  <>
+                    <button onClick={() => handleEdit(song.id)}>
+                      <span>Editar <i className="fa-solid fa-pen-to-square"></i></span>
+                    </button>
+                    <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} />
+                  </>
+                ) : (
+                  <span>Sin Permisos de Edición</span>
+                )}
               </td>
             </tr>
           ))}

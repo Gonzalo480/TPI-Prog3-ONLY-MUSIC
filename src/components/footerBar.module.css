@@ -1,19 +1,19 @@
 .piepagina {
     width: auto;
-    margin-left: 150px;
+    margin-left: 7.8125vw;
     background-color: var(--bg-input-color);
-    position:unset;
+    position: unset;
     bottom: 0;
-  
 }
 
 .piepagina .grupo1 {
     width: 100%;
-    max-width: 1200px;
+    max-width: 62.5vw; 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 50px;
-    padding: 45px 0px;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 2.60417vw; 
+    row-gap: 2.60417vw; 
+    padding: 2.34375vh 0 0 10.4167vw;
 }
 
 .piepagina .grupo1 .box figure {
@@ -24,28 +24,29 @@
 }
 
 .piepagina .grupo1 .box figure img {
-    width: 200px;
+    width: 10.4167vw;
 }
 
 .piepagina .grupo1 .box h2 {
     color: var(--text-color);
-    margin-bottom: 25px;
-    font-size: 20px;
+    margin-bottom: 2.31481vh;
+    font-size: 1.85185vh;
 }
 
 .piepagina .grupo1 .box p {
     color: var(--text-color);
-    margin-bottom: 10px;
+    margin-bottom: 0.92593vh;
+    text-align: start;
 }
 
 .piepagina .grupo1 .redsocial a {
     display: inline-block;
     text-decoration: none;
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
+    width: 2.34375vw;
+    height: 2.34375vw; 
+    line-height: 2.34375vw; 
     color: #fff;
-    margin-right: 10px;
+    margin-right: 0.52083vw;
     background-color: var(--third-bis-color);
     text-align: center;
     transition: all 300ms ease;
@@ -61,11 +62,168 @@
 
 .piepagina .grupo2 {
     background-color: var(--third-bis-color);
-    padding: 15px 10px;
+    padding: 0.78125vh 0.52083vw;
     text-align: center;
     color: #fff;
 }
 
 .piepagina .grupo2 small {
-    font-size: 15px;
+    font-size: 1.38889vh;
+}
+
+
+@media (max-width: 1200px) {
+    .piepagina {
+        margin-left: 6vw;
+    }
+
+    .piepagina .grupo1 {
+        display: block;
+        max-width: 60vw;
+        padding: 2vh 0 0 8vw;
+    }
+
+    .piepagina .grupo1 .box figure img {
+        width: 9vw;
+    }
+
+    .piepagina .grupo1 .box h2 {
+        font-size: 1.6vh;
+    }
+
+    .piepagina .grupo1 .box p {
+        margin-bottom: 0.8vh;
+    }
+
+    .piepagina .grupo1 .redsocial a {
+        width: 2vw;
+        height: 2vw;
+        line-height: 2vw;
+        margin-right: 0.5vw;
+    }
+
+    .piepagina .grupo2 {
+        padding: 0.7vh 0.5vw;
+    }
+
+    .piepagina .grupo2 small {
+        font-size: 1.2vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .piepagina {
+        margin-left: 5vw;
+    }
+
+    .piepagina .grupo1 {
+        display: block;
+        max-width: 55vw;
+        padding: 1.8vh 0 0 7vw;
+    }
+
+    .piepagina .grupo1 .box figure img {
+        width: 8vw;
+    }
+
+    .piepagina .grupo1 .box h2 {
+        font-size: 1.4vh;
+    }
+
+    .piepagina .grupo1 .box p {
+        margin-bottom: 0.7vh;
+    }
+
+    .piepagina .grupo1 .redsocial a {
+        width: 1.8vw;
+        height: 1.8vw;
+        line-height: 1.8vw;
+        margin-right: 0.4vw;
+    }
+
+    .piepagina .grupo2 {
+        padding: 0.6vh 0.4vw;
+    }
+
+    .piepagina .grupo2 small {
+        font-size: 1.1vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .piepagina {
+        margin-left: 4vw;
+    }
+
+    .piepagina .grupo1 {
+        display: block;
+        max-width: 50vw;
+        padding: 1.6vh 0 0 6vw;
+    }
+
+    .piepagina .grupo1 .box figure img {
+        width: 7vw;
+    }
+
+    .piepagina .grupo1 .box h2 {
+        font-size: 1.2vh;
+    }
+
+    .piepagina .grupo1 .box p {
+        margin-bottom: 0.6vh;
+    }
+
+    .piepagina .grupo1 .redsocial a {
+        width: 1.6vw;
+        height: 1.6vw;
+        line-height: 1.6vw;
+        margin-right: 0.3vw;
+    }
+
+    .piepagina .grupo2 {
+        padding: 0.5vh 0.3vw;
+    }
+
+    .piepagina .grupo2 small {
+        font-size: 1vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .piepagina {
+        margin-left: 3vw;
+    }
+
+    .piepagina .grupo1 {
+        display: block;
+        max-width: 45vw;
+        padding: 1.4vh 0 0 5vw;
+    }
+
+    .piepagina .grupo1 .box figure img {
+        width: 6vw;
+    }
+
+    .piepagina .grupo1 .box h2 {
+        font-size: 1vh;
+    }
+
+    .piepagina .grupo1 .box p {
+        margin-bottom: 0.5vh;
+    }
+
+    .piepagina .grupo1 .redsocial a {
+        width: 1.4vw;
+        height: 1.4vw;
+        line-height: 1.4vw;
+        margin-right: 0.2vw;
+    }
+
+    .piepagina .grupo2 {
+        padding: 0.4vh 0.2vw;
+    }
+
+    .piepagina .grupo2 small {
+        font-size: 0.9vh;
+    }
 }

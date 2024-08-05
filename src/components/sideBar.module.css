@@ -1,55 +1,114 @@
 .logo {
     cursor: pointer;
-    padding-bottom: 20px;
+    padding-bottom: 1.85185vh; 
 }
 
 .logo img {
-    height: 120px;
+    height: 11.1111vh; 
     width: auto;
-   
 }
 
 .logo img:hover {
     transform: scale(1.2);
 }
 
-
-
 .sidebar_nav {
+    justify-content: center;
     height: 100%;
-    width: 150px;
+    width: 10.4167vw; 
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #1c232e;
+    background-color: var(--bg-color);
     overflow: hidden;
-    padding: 20px;
-    box-shadow: 6px 20px 10px var(--third-bis-color);
+    padding: 1.85185vh; 
+    box-shadow: 0.3125vw 1.04167vw 0.52083vw var(--third-bis-color); 
     text-decoration: none;
 }
 
 .sidebar_nav .enlacesa {
-    padding: 16px;
-    text-shadow: 2px 2px 4px #000000;
+    padding: 1.1111vh; 
+    text-shadow: 2px 1px 4px #000000;
+    font-weight: bold;
     text-decoration: none;
-    font-size: 20px;
-    color: var(--secondary-color);
+    font-size: 18px; 
+    color: var(--third-bis-color);
     display: block;
     text-align: justify;
+    margin-bottom: 4px;
 }
 
 .sidebar_nav .enlacesa:hover {
     color: var(--neon-color);
-    font-weight: 700;
+    font-weight: 500;
     background-color: var(--bg-color);
-    border-radius: 10px;
-    box-shadow: 3px 7px 5px var(--third-bis-color);
+    border-radius: 0.52083vw; 
+    box-shadow: 0.15625vw 0.36458vw 0.26042vw var(--third-bis-color); 
     text-decoration: none;
 }
 
 .sidebar_nav i {
-    margin-right: 5px;
+    margin-right: 0.26042vw; 
 }
 
 
+@media (max-width: 1200px) {
+    .sidebar_nav {
+        width: 12vw;
+        padding: 1.5vh;
+    }
+
+    .sidebar_nav .enlacesa {
+        font-size: 1.5vh;
+    }
+
+    .logo img {
+        height: 10vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar_nav {
+        width: 15vw;
+        padding: 1.2vh;
+    }
+
+    .sidebar_nav .enlacesa {
+        font-size: 1.2vh;
+    }
+
+    .logo img {
+        height: 8vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar_nav {
+        width: 20vw;
+        padding: 1vh;
+    }
+
+    .sidebar_nav .enlacesa {
+        font-size: 1vh;
+    }
+
+    .logo img {
+        height: 6vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar_nav {
+        width: 25vw;
+        padding: 0.8vh;
+    }
+
+    .sidebar_nav .enlacesa {
+        font-size: 0.8vh;
+    }
+
+    .logo img {
+        height: 5vh;
+    }
+}

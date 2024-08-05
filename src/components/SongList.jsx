@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./songList.module.css";
 import DeleteSong from "./DeleteSong";
+import { AuthContext } from '../context/AuthContext';
+import useFetchData from '../hooks/useFetchData';
 
 function togglePlayPause(event) {
   const element = event.currentTarget;
@@ -30,15 +32,17 @@ function togglePlayPause(event) {
 }
 
 function SongList() {
+  const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
   const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  const { albums, genres, artists, isLoading: isDataLoading, error: dataError } = useFetchData(token);
 
+  useEffect(() => {
     if (!token) {
       setIsLoading(false);
       return;
@@ -73,7 +77,7 @@ function SongList() {
     };
 
     fetchSongs();
-  }, [page]);
+  }, [page, token]);
 
   const handleNextPage = () => {
     if (hasMore) {
@@ -95,8 +99,8 @@ function SongList() {
     window.location.href = window.location.href;
   };
 
-  if (isLoading) return <div className="loading-message">Loading...</div>;
-  if (error) return <div className="error-message">Error: {error}</div>;
+  if (isLoading || isDataLoading) return <div className="loading-message">Loading...</div>;
+  if (error || dataError) return <div className="error-message">Error: {error || dataError}</div>;
 
   return (
     <div className={styles.songlistcontainer}>
@@ -130,6 +134,7 @@ function SongList() {
             <th>Géneros</th>
             <th>Año</th>
             <th>Visitas</th>
+            <th>ID</th>
             <th>Reproducir</th>
             <th>ver</th>
             <th>Editar</th>
@@ -139,11 +144,12 @@ function SongList() {
           {songs.map((song) => (
             <tr key={song.id}>
               <td>{song.title}</td>
-              <td>{song.album}</td>
-              <td>{song.artists.join(", ")}</td>
-              <td>{song.genres.join(", ")}</td>
+              <td>{albums[song.album]}</td>
+              <td>{song.artists.map((artistId) => artists[artistId]).join(", ")}</td>
+              <td>{song.genres.map((genreId) => genres[genreId]).join(", ")}</td>
               <td>{song.year}</td>
               <td>{song.view_count}</td>
+              <td>{song.id}</td>
               <td>
                 <div className="music-item" onClick={togglePlayPause}>
                   <i className="play-icon fas fa-play"></i><br />
@@ -153,8 +159,20 @@ function SongList() {
               <td>
                 <a href={`/song/${song.id}`}>Ver Canción<i className="fa-solid fa-headphones"></i></a>
               </td>
-              <td><button onClick={() => handleEdit(song.id)}><span> Editar<i className="fa-solid fa-pen-to-square"></i></span></button>
-              <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} /></td>
+              <td>
+                <div className="orden" >
+                {user && user.user__id === song.owner ? (
+                  <>
+                    <button onClick={() => handleEdit(song.id)}>
+                      <span>Editar<i className="fa-solid fa-pen-to-square"></i></span>
+                    </button>
+                    <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} />
+                  </>
+                ) : (
+                  <span>Sin Permisos de Edicion</span>
+                )}
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>

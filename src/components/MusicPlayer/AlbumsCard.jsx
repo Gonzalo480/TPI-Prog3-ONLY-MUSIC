@@ -2,7 +2,6 @@ import React from 'react';
 import './Albums.css';
 
 function AlbumCard({ album }) {
-    console.log(album.cover_image);
 
     return (
         <div className={`card has-background-dark album-card`}>

@@ -4,7 +4,7 @@
   align-content: center;
   flex-direction: column;
   width: 80%;
-  margin-left: 200px;
+  margin-left: 16vw;
   color: var(--text-color);
   font-family: "Titillium Web", sans-serif;
 }
@@ -19,9 +19,7 @@
   font-size: xx-large;
   display: inline;
   background: var(--third-bis-color);
-  
 }
-
 
 .songdetailcontainer audio::-webkit-media-controls-play-button {
   display: none;

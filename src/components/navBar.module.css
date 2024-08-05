@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     align-items: center;
     height: 10%;
-    padding: 0 10%;
+    padding: 0 12%;
     align-items: center;
     flex-wrap: wrap;
     padding-bottom: 1.5vh;
@@ -15,34 +15,34 @@
 .header .navlinks {
     display: flex;
     justify-content: space-between;
-    align-items:baseline;
+    align-items: baseline;
     gap: 1vw;
 }
 
 .header .botones {
     display: flex;
     justify-content: space-between;
-    align-items:baseline;
+    align-items: baseline;
     gap: 1vw;
 }
 
 .header .btn {
     color: var(--text-color);
-    padding: 9px 25px;
-    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    padding: 0.46875vh 1.30208vw; 
+    background: linear-gradient(to bottom right, var(--third-color), var(--third-bis-color), var(--bg-input-color));
     border: 1px;
     border-right-style: solid;
     border-left-style: solid;
     border-color: var(--neon-color);
-    border-radius: 5px;
+    border-radius: 0.26042vw; 
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
     text-align: center;
-    margin: 1em 1em 0 0.25em;
+    margin: 1em 1em 0 0.13021vw; 
     font-size: large;
     width: 10vw;
-    max-height: 40px;
+    max-height: 3.7037vh; 
 }
 
 .header .btn:hover {
@@ -54,34 +54,34 @@
 form {
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     text-align: center;
 }
 
 .busqueda {
     margin-left: 5vw;
     border: none;
-    font-size: 16px;
+    font-size: 0.83333vh; 
     transition: all 0.3s;
 }
 
 .header .btn2 {
     color: var(--text-color);
-    padding: 15px 30px;
-    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    padding: 0.78125vh 1.5625vw;
+    background: linear-gradient(to bottom right, var(--third-color), var(--third-bis-color), var(--bg-input-color));
     border: 1px;
     border-right-style: solid;
     border-left-style: solid;
     border-color: var(--neon-color);
-    border-radius: 5px;
+    border-radius: 0.26042vw; 
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
     text-align: center;
-    margin: 2em 0.25em 0 0.25em;
+    margin: 2em 0.13021vw 0 0.13021vw; 
     font-size: medium;
     width: 10vw;
-    max-height: 43px;
+    max-height: 3.98148vh; 
 }
 
 .header .btn2:hover {
@@ -92,18 +92,18 @@ form {
 
 .header .btn3 {
     color: var(--text-color);
-    padding: 9px 25px;
-    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    padding: 0.46875vh 1.30208vw; 
+    background: linear-gradient(to bottom right, var(--third-color), var(--third-bis-color), var(--bg-input-color));
     border: 1px;
     border-right-style: solid;
     border-left-style: solid;
     border-color: var(--neon-color);
-    border-radius: 5px;
+    border-radius: 0.26042vw; 
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease 0s;
     text-align: center;
-    margin: 0 0.25em 0 0.25em;
+    margin: 0 0.13021vw 0 0.13021vw; 
     font-size: medium;
     width: 10vw;
 }
@@ -112,4 +112,67 @@ form {
     background-color: var(--text-color);
     color: var(--third-color);
     transform: scale(1.1);
+}
+
+
+@media (max-width: 1200px) {
+    .header {
+        padding: 0 10%;
+    }
+
+    .header .btn, .header .btn2, .header .btn3 {
+        width: 12vw;
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        padding: 0 8%;
+    }
+
+    .header .btn, .header .btn2, .header .btn3 {
+        width: 14vw;
+    }
+
+    .busqueda {
+        margin-left: 4vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 2vh 5%;
+    }
+
+    .header .navlinks, .header .botones {
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    .header .btn, .header .btn2, .header .btn3 {
+        width: 20vw;
+        max-height: 5vh;
+    }
+
+    .busqueda {
+        margin-left: 3vw;
+    }
+}
+
+@media (max-width: 576px) {
+    .header {
+        padding: 2vh 3%;
+    }
+
+    .header .btn, .header .btn2, .header .btn3 {
+        width: 25vw;
+        max-height: 6vh;
+    }
+
+    .busqueda {
+        margin-left: 2vw;
+        font-size: 1vh;
+    }
 }

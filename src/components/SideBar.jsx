@@ -18,14 +18,21 @@ function SideBar() {
     return (
         <nav className={styles.sidebar_nav}>
       <div className={styles.logo}>
-        <a href="#"><img src="../../public/Diseño-logo.png" alt="Logo"/></a>
+        <span onClick={(e) => handleRedirect(e, "/")}><img src="../../public/Diseño-logo.png" alt="Logo"/></span>
     </div>
     <div>
-        <a href="#" className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>Inicio</a>
-        <a href="#" className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/profile")}>Perfil</a>
-        <a href="#" className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/songsuser")}>Mis Canciones</a>
-        <a href="#" className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/new")}>Subir Canción</a>
-        <a href="#" className={styles.enlacesa} onClick={handleLogout}>Cerrar Sesión</a>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Inicio</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/profile")}>»Perfil</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Mis PlayList</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Crear PlayList</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/songsuser")}>»Canciones Subidas</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/new")}>»Subir Canción</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Albunes Creados</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Crear Album</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Generos Creados</span>
+        <span className={styles.enlacesa} onClick={(e) => handleRedirect(e, "/")}>»Crear Genero</span>
+        <br />
+        <span className={styles.enlacesa} onClick={handleLogout}>Cerrar Sesión</span>
       </div>
     </nav>
     );

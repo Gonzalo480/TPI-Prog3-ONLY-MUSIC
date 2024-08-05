@@ -40,11 +40,8 @@ function SearchSongs() {
       );
 
       const searchResults = await Promise.all(searchPromises);
-      
-      // Combinar y eliminar duplicados
       const combinedResults = Array.from(new Set(searchResults.flatMap(result => result.results)));
-
-      // Navegar a la página de resultados con los datos
+    
       navigate('/search-results', { state: { results: combinedResults } });
     } catch (e) {
       console.error("Error al buscar canciones:", e.message);
@@ -58,9 +55,9 @@ function SearchSongs() {
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Buscar canciones..."
+        placeholder="Buscar canciones por Titulo"
       />
-      <button className={styles.btn3} type="submit">Buscar</button>
+      <button className={styles.btn3} type="submit">Buscar </button>
     </form>
   );
 }

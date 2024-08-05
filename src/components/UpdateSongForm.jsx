@@ -17,6 +17,15 @@ function UpdateSongForm() {
   const fetchSongData = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Debe iniciar sesión para actualizar una canción.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      });
       setError("Debe iniciar sesión para actualizar una canción.");
       return;
     }
@@ -40,9 +49,27 @@ function UpdateSongForm() {
         setYear(songData.year || "");
         setAlbum(songData.album || "");
       } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Error al cargar los datos de la canción.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        });
         setError("Error al cargar los datos de la canción.");
       }
     } catch (e) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Error de red al cargar los datos de la canción.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      });
       setError("Error de red al cargar los datos de la canción.");
     }
   };
@@ -54,6 +81,15 @@ function UpdateSongForm() {
 
     const token = localStorage.getItem("token");
     if (!token) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Debe iniciar sesión para actualizar una canción.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      });
       setError("Debe iniciar sesión para actualizar una canción.");
       return;
     }
@@ -80,16 +116,41 @@ function UpdateSongForm() {
 
       if (response.ok) {
         setSuccess(true);
-        alert("Canción actualizada con éxito.");
-        window.location.href = `/song/${id}`;
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Canción actualizada con éxito.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        }).then(() => {
+          window.location.href = `/song/${id}`;
+        });
       } else {
         const errorData = await response.json();
+        Swal.fire({
+          title: 'Error',
+          text: errorData.message || 'Error al actualizar la canción.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        });
         setError(errorData.message || "Error al actualizar la canción.");
-        alert("Error al actualizar la canción: " + (errorData.message || "Intente nuevamente."));
       }
     } catch (e) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Error de red al actualizar la canción. Por favor, intente nuevamente.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      });
       setError("Error de red al actualizar la canción.");
-      alert("Error de red al actualizar la canción. Por favor, intente nuevamente.");
     }
   };
 
@@ -136,6 +197,8 @@ function UpdateSongForm() {
             <br />
             <button className={styles.buttonupdate} type="submit">Actualizar Canción</button>
           </form>
+          <br />
+          <br />
         </div>
       </div>
     </div>

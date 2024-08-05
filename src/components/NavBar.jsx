@@ -4,12 +4,11 @@ import styles from "./navBar.module.css";
 import SearchSongs from "./SearchSongs";
 
 function NavBar() {
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/');
+    window.location.href ='/';
   };
 
   const handleRedirect = (e, url) => {
