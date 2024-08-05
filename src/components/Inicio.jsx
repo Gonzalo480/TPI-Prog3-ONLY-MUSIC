@@ -4,7 +4,7 @@ import styles from "./inicio.module.css";
 function Inicio() {
   const handleRedirect = (e) => {
     e.preventDefault();
-    window.location.href = "/";
+    window.location.href = "/login";
   };
 
   return (
