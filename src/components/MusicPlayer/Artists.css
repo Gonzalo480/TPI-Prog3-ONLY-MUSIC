@@ -1,0 +1,61 @@
+.card {
+    margin: 10px;
+}
+
+.my-5 {
+    background: var(--bg-input-color);
+    padding-left: 10vw;
+    padding-right: 10vw;
+    border: 3px solid var(--primary-color);
+}
+
+.cuer {
+    display: flex;
+    justify-content: center;
+}
+
+.title2 {
+    text-align: center;
+    color: var(--neon-color);
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.title {
+    text-align: center;
+    color: var(--neon-new);
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.contener {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-content {
+    background: var(--primary-color);
+    border: 5px solid var(--secondary-color);
+    padding: 150px;
+    color: var(--text-color);
+    font-size: xx-large;
+}
+
+.artist-card {
+    display: flex;
+    justify-content: center;
+}
+
+.artist-card img {
+    width: 500px;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    border-radius: 5px;
+    overflow: hidden;
+}

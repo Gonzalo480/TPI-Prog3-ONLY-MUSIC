@@ -1,35 +1,32 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from "./navBar.module.css";
 import SearchSongs from "./SearchSongs";
 
 function NavBar() {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href ='/';
-  };
-
-  const handleRedirect = (e, url) => {
-    e.preventDefault();
-    window.location.href = url;
+    navigate('/login');
   };
 
   return (
     <header className={styles.header}>
       <nav>
         <div className={styles.navlinks}>
-          <a className={styles.btn} href="#" onClick={(e) => handleRedirect(e, "/songs")}>Canciones</a>
-          <a className={styles.btn} href="#" onClick={(e) => handleRedirect(e, "/albums")}>Albums</a>
-          <a className={styles.btn} href="#" onClick={(e) => handleRedirect(e, "/genres")}>Generos</a>
-          </div>
+          <Link className={styles.btn} to="/songs">Canciones</Link>
+          <Link className={styles.btn} to="/artist">Artistas</Link>
+          <Link className={styles.btn} to="/albums">Álbumes</Link>
+          <Link className={styles.btn} to="/genres">Géneros</Link>
+        </div>
       </nav>
       <div className={styles.botones}>
         {token ? (
-          <a className={styles.btn2} href="#" onClick={handleLogout}>Cerrar Sesión</a>
+          <button className={styles.btn2} onClick={handleLogout}>Cerrar Sesión</button>
         ) : (
-          <a className={styles.btn2} href="/login">Iniciar Sesión</a>
+          <Link className={styles.btn2} to="/login">Iniciar Sesión</Link>
         )}
         <SearchSongs />
       </div>
