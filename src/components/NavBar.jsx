@@ -1,15 +1,14 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from "./navBar.module.css";
 import SearchSongs from "./SearchSongs";
 
 function NavBar() {
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/');
+    window.location.href ='/';
   };
 
   return (

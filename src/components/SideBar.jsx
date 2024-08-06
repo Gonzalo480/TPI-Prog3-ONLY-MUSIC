@@ -1,20 +1,19 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import styles from "./sideBar.module.css";
 
 function SideBar() {
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/');
+    window.location.href ='/';
   };
 
   return (
     <nav className={styles.sidebar_nav}>
       <div className={styles.logo}>
-        <Link to="/"><img src="../../public/Diseño-logo.ico" alt="Logo" /></Link>
+        <Link to="/"><img src="../../public/Diseño-logo.png" alt="Logo" /></Link>
       </div>
       <div>
         <Link to="/" className={styles.enlacesa}>»Inicio</Link>
