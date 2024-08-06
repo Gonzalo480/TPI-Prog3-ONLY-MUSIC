@@ -17,13 +17,12 @@ function SideBar() {
       </div>
       <div>
         <Link to="/" className={styles.enlacesa}>»Inicio</Link>
-        <Link to="/login" className={styles.enlacesa}>»Iniciar sesion</Link>
-        {token && (
+        {token ?
           <>
             <Link to="/profile" className={styles.enlacesa}>»Perfil</Link>
             <Link to="/" className={styles.enlacesa}>»Mis PlayList</Link>
             <Link to="/" className={styles.enlacesa}>»Crear PlayList</Link>
-            <Link to="/upsongs" className={styles.enlacesa}>»Canciones Subidas</Link>
+            <Link to="/songuser" className={styles.enlacesa}>»Canciones Subidas</Link>
             <Link to="/new" className={styles.enlacesa}>»Subir Canción</Link>
             <Link to="/" className={styles.enlacesa}>»Albunes Creados</Link>
             <Link to="/" className={styles.enlacesa}>»Crear Album</Link>
@@ -32,7 +31,8 @@ function SideBar() {
         <br />
             <a href="#" className={styles.enlacesa} onClick={handleLogout}>Cerrar Sesión</a>
           </>
-        )}
+         : <><Link to="/login" className={styles.enlacesa}>»Iniciar sesion</Link></>
+        }
       </div>
     </nav>
   );
