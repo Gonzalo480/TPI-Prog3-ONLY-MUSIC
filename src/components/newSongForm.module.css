@@ -8,6 +8,12 @@
   color: var(--text-color);
 }
 
+.achetres {
+  margin-top: 20px;
+  color: var(--text-color);
+  text-align: center;
+}
+
 .newsongformcontainer {
   display: flex;
   justify-content: center;
@@ -83,4 +89,9 @@
   margin-left: 10px;
   font-size: 14px;
   color: var(--bg-color);
+}
+
+.contenido .miinput2 {
+  width: 31.8vw;
+  height: 15vh ;
 }

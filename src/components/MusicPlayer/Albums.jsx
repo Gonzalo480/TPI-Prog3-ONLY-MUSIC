@@ -25,6 +25,8 @@ export default function AlbumList() {
                         </div>
                     ))}
                 </ul>
+                <br /><br />
+
                 {isLoading && <p>Cargando más álbumes...</p>}
                 {nextURL && !isLoading && (
                     <button
@@ -34,7 +36,9 @@ export default function AlbumList() {
                         Cargar más
                     </button>
                 )}
+                <br /><br />
             </div>
+ 
         </div>
         </div>
     );

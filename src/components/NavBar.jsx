@@ -9,14 +9,19 @@ function NavBar() {
   
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate('/login');
+    navigate('/');
   };
 
   return (
     <header className={styles.header}>
       <nav>
         <div className={styles.navlinks}>
+          
+          {token ? (
           <Link className={styles.btn} to="/songs">Canciones</Link>
+        ) : (
+          <></>
+        )}
           <Link className={styles.btn} to="/artist">Artistas</Link>
           <Link className={styles.btn} to="/albums">Álbumes</Link>
           <Link className={styles.btn} to="/genres">Géneros</Link>
@@ -24,11 +29,13 @@ function NavBar() {
       </nav>
       <div className={styles.botones}>
         {token ? (
+          <>
           <button className={styles.btn2} onClick={handleLogout}>Cerrar Sesión</button>
+          <SearchSongs /></>
         ) : (
           <Link className={styles.btn2} to="/login">Iniciar Sesión</Link>
         )}
-        <SearchSongs />
+        
       </div>
     </header>
   );

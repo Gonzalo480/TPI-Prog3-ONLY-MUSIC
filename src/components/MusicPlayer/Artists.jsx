@@ -26,6 +26,7 @@ export default function ArtistList() {
                             </div>
                         ))}
                     </ul>
+                    <br /><br />
                     {isLoading && <p>Cargando más artistas...</p>}
                     {nextURL && !isLoading && (
                         <button
@@ -35,6 +36,7 @@ export default function ArtistList() {
                             Cargar más
                         </button>
                     )}
+                     <br /><br />
                 </div>
             </div>
         </div>

@@ -59,3 +59,23 @@
     border-radius: 5px;
     overflow: hidden;
 }
+
+.button {
+    border:none;
+    width: 100%;
+    color:  var(--text-color);
+    font-size: 20px;
+    background: var(--third-bis-color);
+    padding: 15px 20px ;
+    border-radius: 5px;
+    cursor:pointer;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background:var(--primary-color);
+    align-items: center;
+}

@@ -16,6 +16,7 @@ import SearchResults from '../components/SearchResults';
 import UpdateProfileForm from '../components/UpdateProfileForm';
 import Inicio from '../components/Inicio';
 import UpdateSongForm from '../components/UpdateSongForm';
+import Contact from '../components/Contact';
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ const Router = createBrowserRouter(
       <Route path="/songs" element={<SongList />} />
       <Route path="/song/:id" element={<SongDetail />} />
       <Route path="/songuser" element={<SongUser />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/search-results" element={<SearchResults />} />
       <Route path="/update/:id" element={<UpdateSongForm />} />
       <Route path="/updateprofile/:userId" element={

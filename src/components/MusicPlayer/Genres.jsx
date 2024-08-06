@@ -26,6 +26,7 @@ export default function GenreList() {
                         </div>
                     ))}
                 </ul>
+                <br /><br />
                 {isLoading && <p>Cargando más géneros...</p>}
                 {nextURL && !isLoading && (
                     <button
@@ -35,6 +36,7 @@ export default function GenreList() {
                         Cargar más
                     </button>
                 )}
+                <br /><br />
             </div>
         </div>
         </div>
