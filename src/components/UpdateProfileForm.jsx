@@ -180,7 +180,7 @@ function UpdateProfileForm() {
           )}
         </div>
         <div className={styles.contenido}>
-          <form onSubmit={handleSubmit} className={styles.newsongformcontainer}>
+          <form onSubmit={handleSubmit} className={styles.newform}>
             <label>
               Usuario: <br />
               <input

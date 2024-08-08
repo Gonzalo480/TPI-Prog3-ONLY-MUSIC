@@ -88,7 +88,7 @@ function NewSongForm() {
         {success && <div className="success-message">Canción creada con éxito.</div>}
       </div>
       <div className={styles.contenido}>
-        <form onSubmit={handleSubmit} className={styles.newsongformcontainer}>
+        <form onSubmit={handleSubmit} className={styles.newform}>
           <label>
             Título: <br />
             <input

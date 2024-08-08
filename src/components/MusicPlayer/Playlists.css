@@ -2,6 +2,25 @@
     margin: 10px;
 }
 
+.playlist-card {
+    display: flex;
+    justify-content: center;
+}
+
+.title2 {
+    text-align: center;
+    color: var(--neon-color);
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
 .my-5 {
     background: var(--bg-input-color);
     padding-left: 10vw;
@@ -9,19 +28,15 @@
     border: 3px solid var(--primary-color);
 }
 
-.cuer{
+.contener {
+    margin-top: 100px;
     display: flex;
     justify-content: center;
 }
 
-
-.title2{
-    text-align: center;
-    color: var(--neon-color);
-    font-size: 50px;
-    font-weight: bold;
-    margin-top: 15px;
-    margin-bottom: 15px;
+.cuer {
+    display: flex;
+    justify-content: center;
 }
 
 .title{
@@ -33,12 +48,6 @@
     margin-bottom: 15px;
 }
 
-.contener {
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-}
-
 
 .card-content {
     background: var(--primary-color);
@@ -48,12 +57,7 @@
     font-size: xx-large;
 }
 
-.album-card {
-    display: flex;
-    justify-content: center;
-}
-
-.album-card img {
+.playlist-card  img {
     width: 500px;
     height: auto;
     display: block;
@@ -61,6 +65,7 @@
     border-radius: 5px;
     overflow: hidden;
 }
+
 
 .button {
     border:none;
@@ -81,9 +86,6 @@
     background:var(--primary-color);
     align-items: center;
 }
-
-
-
 
 .carga {
     color: var(--text-color);
@@ -129,13 +131,4 @@
 
 .bar:nth-child(5) {
     animation-delay: 0.8s;
-}
-
-@keyframes fade {
-    0%, 100% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
 }

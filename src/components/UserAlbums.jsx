@@ -1,26 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AlbumCard from './AlbumsCard';
-import { useFetchAlbums } from '../../hooks/useFetchAlbums';
+import { AuthContext } from '../context/AuthContext';
+import AlbumCard from './MusicPlayer/AlbumsCard';
 
-export default function AlbumList() {
-    const [page, setPage] = useState(1);
-    const { albums, nextURL, isError, isLoading } = useFetchAlbums(page);
+export default function UserAlbumList() {
+    const [albums, setAlbums] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    function handleLoadMore() {
-        if (nextURL) {
-            setPage(currentPage => currentPage + 1);
+    useEffect(() => {
+        if (user) {
+            fetchAllUserAlbums();
         }
-    }
+    }, [user]);
 
-    function handleUpdate(album) {
-        navigate(`/updatealbum/${album.id}`);
-    }
+    const fetchAllUserAlbums = async () => {
+        setIsLoading(true);
+        setIsError(false);
 
-    function handleDelete(albumId) {
         const token = localStorage.getItem('token');
+        if (!token) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Debe iniciar sesión para ver sus álbumes.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false
+            });
+            setIsLoading(false);
+            return;
+        }
 
+        let allUserAlbums = [];
+        let nextPage = 1;
+        let hasMorePages = true;
+
+        while (hasMorePages) {
+            try {
+                const response = await fetch(`https://sandbox.academiadevelopers.com/harmonyhub/albums/?page=${nextPage}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const userAlbums = data.results.filter(album => album.owner === user.user__id);
+                    allUserAlbums = [...allUserAlbums, ...userAlbums];
+                    hasMorePages = !!data.next;
+                    nextPage++;
+                } else {
+                    setIsError(true);
+                    hasMorePages = false;
+                }
+            } catch (e) {
+                setIsError(true);
+                hasMorePages = false;
+            }
+        }
+
+        setAlbums(allUserAlbums);
+        setIsLoading(false);
+    };
+
+    const handleUpdate = (album) => {
+        navigate(`/updatealbum/${album.id}`);
+    };
+
+    const handleDelete = async (albumId) => {
+        const token = localStorage.getItem('token');
         if (!token) {
             Swal.fire({
                 title: 'Error',
@@ -50,7 +105,7 @@ export default function AlbumList() {
                             method: 'DELETE',
                             headers: {
                                 'Content-type': 'application/json',
-                                Authorization: `Token ${token}`,
+                                Authorization: `Bearer ${token}`,
                             },
                             credentials: 'include',
                         }
@@ -66,7 +121,7 @@ export default function AlbumList() {
                             allowEscapeKey: false,
                             allowEnterKey: false
                         }).then(() => {
-                            window.location.reload();
+                            setAlbums(albums.filter(album => album.id !== albumId));
                         });
                     } else {
                         const errorData = await response.json();
@@ -93,14 +148,14 @@ export default function AlbumList() {
                 }
             }
         });
-    }
+    };
 
     return (
         <div className='contener'>
-            <div className='cuer' >
+            <div className='cuer'>
                 {isError && <p className="error-message">No se pudieron cargar los álbumes</p>}
                 <div className="my-5">
-                    <h2 className="title2">Lista de Álbumes</h2>
+                    <h2 className="title2">Mis Álbumes</h2>
                     <ul>
                         {albums.map(album => (
                             <div key={album.id} className="column is-two-thirds">
@@ -110,7 +165,7 @@ export default function AlbumList() {
                     </ul>
                     <br /><br />
                     {isLoading && <><div class="loader-container">
-                        <spam className="carga" >Cargando mas álbumes...</spam>
+                        <spam className="carga" >Cargando álbumes...</spam>
                         <div class="fading-bars">
                         <div class="bar"></div>
                         <div class="bar"></div>
@@ -119,14 +174,6 @@ export default function AlbumList() {
                         <div class="bar"></div>
                         </div>
                         </div></>}
-                    {nextURL && !isLoading && (
-                        <button
-                            className="button is-primary"
-                            onClick={handleLoadMore}
-                        >
-                            Cargar más
-                        </button>
-                    )}
                     <br /><br />
                 </div>
             </div>

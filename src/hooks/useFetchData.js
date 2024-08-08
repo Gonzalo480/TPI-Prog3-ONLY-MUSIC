@@ -1,4 +1,3 @@
-// src/hooks/useFetchData.js
 import { useState, useEffect } from "react";
 
 const API_BASE_URL = "https://sandbox.academiadevelopers.com/harmonyhub";
@@ -10,44 +9,36 @@ const useFetchData = (token) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchWithAuth = async (url) => {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  };
+
+  const fetchAllItems = async (endpoint) => {
+    const countResponse = await fetchWithAuth(`${API_BASE_URL}/${endpoint}/?page_size=1`);
+    const totalItems = countResponse.count;
+    return fetchWithAuth(`${API_BASE_URL}/${endpoint}/?page_size=${totalItems}`);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [albumsResponse, genresResponse, artistsResponse] = await Promise.all([
-          fetch(`${API_BASE_URL}/albums/`, {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Token ${token}`,
-            },
-            credentials: "include",
-          }),
-          fetch(`${API_BASE_URL}/genres/`, {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Token ${token}`,
-            },
-            credentials: "include",
-          }),
-          fetch(`${API_BASE_URL}/artists/`, {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Token ${token}`,
-            },
-            credentials: "include",
-          }),
-        ]);
-
-        if (!albumsResponse.ok || !genresResponse.ok || !artistsResponse.ok) {
-          throw new Error("Error al cargar los datos.");
-        }
-
         const [albumsData, genresData, artistsData] = await Promise.all([
-          albumsResponse.json(),
-          genresResponse.json(),
-          artistsResponse.json(),
+          fetchAllItems('albums'),
+          fetchAllItems('genres'),
+          fetchAllItems('artists'),
         ]);
 
         const albumsMap = {};

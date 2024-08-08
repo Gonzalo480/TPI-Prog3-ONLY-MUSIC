@@ -15,7 +15,7 @@
 .sidebar_nav {
     justify-content: center;
     height: 100%;
-    width: 10.4167vw; 
+    width: 200px; 
     position: fixed;
     z-index: 1;
     top: 0;

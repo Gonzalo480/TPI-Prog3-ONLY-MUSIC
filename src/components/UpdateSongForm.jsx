@@ -7,6 +7,8 @@ function UpdateSongForm() {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [album, setAlbum] = useState("");
+  const [genres, setGenres] = useState("");
+  const [artists, setArtists] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -48,6 +50,8 @@ function UpdateSongForm() {
         setTitle(songData.title);
         setYear(songData.year || "");
         setAlbum(songData.album || "");
+        setGenres(songData.genres ? songData.genres.join(",") : "");
+        setArtists(songData.artists ? songData.artists.join(",") : "");
       } else {
         Swal.fire({
           title: 'Error',
@@ -94,10 +98,16 @@ function UpdateSongForm() {
       return;
     }
 
+    // Convertir los campos de géneros y artistas a arrays de números
+    const genresArray = genres.split(',').map(num => parseInt(num.trim(), 10)).filter(num => !isNaN(num));
+    const artistsArray = artists.split(',').map(num => parseInt(num.trim(), 10)).filter(num => !isNaN(num));
+
     const updateData = {
       title,
       year: year ? parseInt(year, 10) : null,
       album: album ? parseInt(album, 10) : null,
+      genres: genresArray,
+      artists: artistsArray,
     };
 
     try {
@@ -163,7 +173,7 @@ function UpdateSongForm() {
           {success && <div className="success-message">Canción actualizada con éxito.</div>}
         </div>
         <div className={styles.contenido}>
-          <form onSubmit={handleSubmit} className={styles.newsongformcontainer}>
+          <form onSubmit={handleSubmit} className={styles.newform}>
             <label>
               Título: <br />
               <input
@@ -192,6 +202,26 @@ function UpdateSongForm() {
                 type="number"
                 value={album}
                 onChange={(e) => setAlbum(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Géneros (números separados por coma): <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={genres}
+                onChange={(e) => setGenres(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Artistas (números separados por coma): <br />
+              <input
+                className={styles.miinput}
+                type="text"
+                value={artists}
+                onChange={(e) => setArtists(e.target.value)}
               />
             </label>
             <br />

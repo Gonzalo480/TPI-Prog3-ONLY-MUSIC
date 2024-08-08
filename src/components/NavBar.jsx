@@ -24,6 +24,7 @@ function NavBar() {
           <Link className={styles.btn} to="/artist">Artistas</Link>
           <Link className={styles.btn} to="/albums">Álbumes</Link>
           <Link className={styles.btn} to="/genres">Géneros</Link>
+          <Link className={styles.btn} to="/playlists">PlayList</Link>
         </div>
       </nav>
       <div className={styles.botones}>

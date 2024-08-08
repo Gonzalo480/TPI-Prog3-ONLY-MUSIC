@@ -21,7 +21,7 @@ function Contact() {
       <h1 className={styles.acheuno}>Contacto</h1>
       <h3 className={styles.achetres}>¿En qué podemos ayudarte?</h3>
       <div className={styles.contenido}>
-        <form className={styles.newsongformcontainer} onSubmit={handleFormSubmit}>
+        <form className={styles.newform} onSubmit={handleFormSubmit}>
           <label>
             Nombre y Apellido: <br />
             <input className={styles.miinput} type="text" required />

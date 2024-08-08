@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.newsongformcontainer {
+.newform {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -94,4 +94,11 @@
 .contenido .miinput2 {
   width: 31.8vw;
   height: 15vh ;
+}
+
+.center {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

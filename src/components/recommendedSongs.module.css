@@ -1,0 +1,168 @@
+.songlistcontainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 16vw;
+    color: var(--text-color);
+    font-family: "Titillium Web", sans-serif;
+}
+
+.songlistcontainer h1{
+    color: var(--bg-input-color);
+    text-shadow: 2px 2px 4px var(--neon-new);
+
+    font-weight: bold;
+    padding: 0.5vw;
+  
+    margin-top: 10px;
+    box-shadow: 3px 5px var(--bg-input-color);
+    font-size: xx-large;
+    display: inline;
+    background: var(--third-bis-color);
+    
+}
+
+.songlistcontainer h2{
+    color: var(--text-color);
+    text-shadow: 2px 2px 4px var(--neon-new);
+    font-weight: bold;
+    padding: 0.5vw;
+    margin-top: 10px;
+    font-size: xx-large;
+    display: inline;
+    text-align: center;
+}
+
+.titlerec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titlerec img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+table {
+    width: 100%;
+}
+
+table a {
+    color: var(--neon-color);
+    text-decoration: none;
+    transition: color 0.3s ease 0s;
+}
+
+table tr {
+    border-radius: 5px;
+    background-color: var(--bg-input-color);
+    border: var(--bg-input-color);
+}
+
+table th{
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid var(--third-color);
+}
+
+
+table td {
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    color: var(--text-color);
+    text-align: center;
+    border: 1px solid var(--bg-input-color);
+}
+
+table thead th {
+    text-transform: uppercase;
+    background-color: var(--third-bis-color);
+}
+
+table td img {
+    width: 15vw;
+    height: auto;
+}
+
+table tbody tr:hover {
+    background-color: rgba(19, 225, 70 , 0.2);
+}
+
+table tbody td:hover {
+    background-color: rgba(19, 225, 70 , 0.2);
+}
+
+table td button {
+    color: var(--text-color);
+    padding: 9px 25px;
+    background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
+    border: 1px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: var(--neon-color);
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    margin: 0 0.2em 0 0.2em;
+    font-size: small;
+}
+
+table td  button:hover {
+    background-color: var(--text-color);
+    color: var(--third-color);
+    transform: scale(1.1);
+}
+
+.carga {
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.fading-bars {
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+}
+
+.bar {
+    width: 10px;
+    height: 40px;
+    background-color: var(--neon-new);
+    animation: fade 1s infinite;
+}
+
+.bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.bar:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.bar:nth-child(5) {
+    animation-delay: 0.8s;
+}

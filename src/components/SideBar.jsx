@@ -21,13 +21,15 @@ function SideBar() {
           <>
             <Link to="/profile" className={styles.enlacesa}>»Perfil</Link>
             <Link to="/" className={styles.enlacesa}>»Mis PlayList</Link>
-            <Link to="/" className={styles.enlacesa}>»Crear PlayList</Link>
+            <Link to="/newplaylist" className={styles.enlacesa}>»Agregar PlayList</Link>
             <Link to="/songuser" className={styles.enlacesa}>»Canciones Subidas</Link>
             <Link to="/new" className={styles.enlacesa}>»Subir Canción</Link>
-            <Link to="/" className={styles.enlacesa}>»Albunes Creados</Link>
-            <Link to="/" className={styles.enlacesa}>»Crear Album</Link>
-            <Link to="/" className={styles.enlacesa}>»Generos Creados</Link>
-            <Link to="/" className={styles.enlacesa}>»Crear Genero</Link>
+            <Link to="/albumsguser" className={styles.enlacesa}>»Albunes Agregados</Link>
+            <Link to="/newalbum" className={styles.enlacesa}>»Agregar Album</Link>
+            <Link to="/" className={styles.enlacesa}>»Generos Agregados</Link>
+            <Link to="/newgenre" className={styles.enlacesa}>»Agregar Genero</Link>
+            <Link to="/" className={styles.enlacesa}>»Artistas Agregados</Link>
+            <Link to="/newartist" className={styles.enlacesa}>»Agregar Artista</Link>
         <br />
             <a href="#" className={styles.enlacesa} onClick={handleLogout}>Cerrar Sesión</a>
           </>

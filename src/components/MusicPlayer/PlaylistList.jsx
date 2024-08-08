@@ -1,30 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AlbumCard from './AlbumsCard';
-import { useFetchAlbums } from '../../hooks/useFetchAlbums';
+import PlaylistCard from './PlaylistCard';
+import './Playlists.css';
 
-export default function AlbumList() {
+function PlaylistList() {
+    const [playlists, setPlaylists] = useState([]);
     const [page, setPage] = useState(1);
-    const { albums, nextURL, isError, isLoading } = useFetchAlbums(page);
+    const [nextURL, setNextURL] = useState(null);
+    const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    function handleLoadMore() {
-        if (nextURL) {
-            setPage(currentPage => currentPage + 1);
+    useEffect(() => {
+        fetchPlaylists(page);
+    }, [page]);
+
+    const fetchPlaylists = async (page) => {
+        setIsLoading(true);
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await fetch(
+                `https://sandbox.academiadevelopers.com/harmonyhub/playlists/?page=${page}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    credentials: 'include',
+                }
+            );
+
+            if (response.ok) {
+                const data = await response.json();
+                setPlaylists((prevPlaylists) => [...prevPlaylists, ...data.results]);
+                setNextURL(data.next);
+                setIsLoading(false);
+            } else {
+                setIsError(true);
+                setIsLoading(false);
+            }
+        } catch (error) {
+            setIsError(true);
+            setIsLoading(false);
         }
-    }
+    };
 
-    function handleUpdate(album) {
-        navigate(`/updatealbum/${album.id}`);
-    }
+    const handleLoadMore = () => {
+        if (nextURL) {
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
 
-    function handleDelete(albumId) {
+    const handleUpdate = (playlist) => {
+        navigate(`/updateplaylist/${playlist.id}`);
+    };
+
+    const handleDelete = (playlistId) => {
         const token = localStorage.getItem('token');
 
         if (!token) {
             Swal.fire({
                 title: 'Error',
-                text: 'Debe iniciar sesión para eliminar un álbum.',
+                text: 'Debe iniciar sesión para eliminar una lista de reproducción.',
                 icon: 'error',
                 confirmButtonText: 'OK',
                 allowOutsideClick: false,
@@ -45,7 +84,7 @@ export default function AlbumList() {
             if (result.isConfirmed) {
                 try {
                     const response = await fetch(
-                        `https://sandbox.academiadevelopers.com/harmonyhub/albums/${albumId}/`,
+                        `https://sandbox.academiadevelopers.com/harmonyhub/playlists/${playlistId}/`,
                         {
                             method: 'DELETE',
                             headers: {
@@ -59,20 +98,20 @@ export default function AlbumList() {
                     if (response.ok) {
                         Swal.fire({
                             title: 'Eliminado',
-                            text: 'El álbum ha sido eliminado.',
+                            text: 'La lista de reproducción ha sido eliminada.',
                             icon: 'success',
                             confirmButtonText: 'OK',
                             allowOutsideClick: false,
                             allowEscapeKey: false,
                             allowEnterKey: false
                         }).then(() => {
-                            window.location.reload();
+                            setPlaylists((prevPlaylists) => prevPlaylists.filter(p => p.id !== playlistId));
                         });
                     } else {
                         const errorData = await response.json();
                         Swal.fire({
                             title: 'Error',
-                            text: errorData.message || 'Error al eliminar el álbum.',
+                            text: errorData.message || 'Error al eliminar la lista de reproducción.',
                             icon: 'error',
                             confirmButtonText: 'OK',
                             allowOutsideClick: false,
@@ -83,7 +122,7 @@ export default function AlbumList() {
                 } catch (e) {
                     Swal.fire({
                         title: 'Error',
-                        text: 'Error de red al eliminar el álbum. Por favor, intente nuevamente.',
+                        text: 'Error de red al eliminar la lista de reproducción. Por favor, intente nuevamente.',
                         icon: 'error',
                         confirmButtonText: 'OK',
                         allowOutsideClick: false,
@@ -93,24 +132,24 @@ export default function AlbumList() {
                 }
             }
         });
-    }
+    };
 
     return (
         <div className='contener'>
-            <div className='cuer' >
-                {isError && <p className="error-message">No se pudieron cargar los álbumes</p>}
+            <div className='cuer'>
+                {isError && <p className="error-message">No se pudieron cargar las listas de reproducción</p>}
                 <div className="my-5">
-                    <h2 className="title2">Lista de Álbumes</h2>
+                    <h2 className="title2">Lista de Reproducción</h2>
                     <ul>
-                        {albums.map(album => (
-                            <div key={album.id} className="column is-two-thirds">
-                                <AlbumCard album={album} onUpdate={handleUpdate} onDelete={handleDelete} />
+                        {playlists.map(playlist => (
+                            <div key={playlist.id} className="column is-two-thirds">
+                                <PlaylistCard playlist={playlist} onUpdate={handleUpdate} onDelete={handleDelete} />
                             </div>
                         ))}
                     </ul>
                     <br /><br />
                     {isLoading && <><div class="loader-container">
-                        <spam className="carga" >Cargando mas álbumes...</spam>
+                        <spam className="carga" >Cargando más listas de reproducción...</spam>
                         <div class="fading-bars">
                         <div class="bar"></div>
                         <div class="bar"></div>
@@ -133,3 +172,5 @@ export default function AlbumList() {
         </div>
     );
 }
+
+export default PlaylistList;
