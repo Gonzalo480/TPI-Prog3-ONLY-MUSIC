@@ -143,6 +143,10 @@ table td  button:hover {
     transform: scale(1.1);
 }
 
+audio::-webkit-media-controls-play-button {
+    display: none;
+  }
+
 @media (max-width: 1200px) {
     .songlistcontainer {
         margin-left: 10vw;
