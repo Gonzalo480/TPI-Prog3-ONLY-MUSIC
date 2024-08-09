@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AlbumCard from './AlbumsCard';
 import { useFetchAlbums } from '../../hooks/useFetchAlbums';
+import "./Albums.css";
 
 export default function AlbumList() {
     const [page, setPage] = useState(1);

@@ -1,24 +1,46 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import './Playlists.css';
+
 
 function PlaylistCard({ playlist, onUpdate, onDelete }) {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleOpenPlaylist = () => {
+        navigate(`/playlists/${playlist.id}`);
+    };
+
+
+    const handleOpenProfile = () => {
+        navigate(`/viewerprofile/${playlist.owner}`);
+    };
 
     return (
         <div className={`card has-background-dark playlist-card`}>
             <div className="card-content">
                 <div className="media">
                     <div className="media-content">
-                        <p className={`title is-4 has-text-white`}>{playlist.name}</p>
-                        <p className={`subtitle is-6 has-text-white`}>{playlist.owner}</p>
+                        <p className="titlep">{playlist.name}</p>
+                        <p className="has-text-white">Creador:  {playlist.owner}</p>
+                        <button className="button is-link" onClick={handleOpenProfile}>
+                        Ver Perfil
+                        </button>
+                       <br /><br />
                     </div>
                 </div>
                 <div className="content">
-                    <p className="has-text-white">{playlist.description}</p>
+                    <p className="has-text-white">Descripcion: {playlist.description}</p>
                     <p className="has-text-white">{`Pública: ${playlist.public ? 'Sí' : 'No'}`}</p>
-                    <p className="has-text-white">{`Entradas: ${playlist.entries}`}</p>
+                    <p className="has-text-white">{`Entradas: ${playlist.entries.length}`}</p>
                 </div>
+                {playlist.entries.length === 0 ? (
+                    <p className="has-text-warning">Playlist vacía</p>
+                ) : (
+                    <button className="button is-link" onClick={handleOpenPlaylist}>
+                        Abrir Playlist
+                    </button>
+                )}
                 {user && user.user__id === playlist.owner && (
                     <>
                         <button className="button is-primary" onClick={() => onUpdate(playlist)}>

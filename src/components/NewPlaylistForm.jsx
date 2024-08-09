@@ -1,118 +1,104 @@
 import React, { useState } from 'react';
 import styles from "./newSongForm.module.css";
 
-
-function NewPlaylistForm() {
+const NewPlaylistForm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isPublic, setIsPublic] = useState(false);
-  const [entries, setEntries] = useState('');
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [entries, setEntries] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(null);
-    setSuccess(false);
-
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setError('Debe iniciar sesión para crear una playlist.');
-      return;
-    }
-
-    const entriesArray = entries.split(',').map(id => parseInt(id.trim(), 10));
-
-    const playlistData = {
-      name,
-      description,
-      public: isPublic,
-      entries: entriesArray,
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await fetch('https://sandbox.academiadevelopers.com/harmonyhub/playlists/', {
+      const playlistResponse = await fetch('https://sandbox.academiadevelopers.com/harmonyhub/playlists/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
+          'Authorization': `Token ${token}`,
         },
-        body: JSON.stringify(playlistData),
+        body: JSON.stringify({ name, description, public: isPublic, entries }),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setSuccess(true);
-        Swal.fire({
-          title: 'Éxito',
-          text: 'Playlist creada con éxito.',
-          icon: 'success',
-          confirmButtonText: 'OK',
-        }).then(() => {
-          window.location.href = '/playlists';
-        });
+      if (playlistResponse.ok) {
+        const playlistData = await playlistResponse.json();
+        console.log('Playlist created:', playlistData);
+
+        // Add entries to the new playlist
+        for (const song of entries) {
+          await fetch('https://sandbox.academiadevelopers.com/harmonyhub/playlist-entries/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${token}`,
+            },
+            body: JSON.stringify({ order: song.order, playlist: playlistData.id, song: song.id }),
+          });
+        }
+
+        // Reset form fields
+        setName('');
+        setDescription('');
+        setIsPublic(false);
+        setEntries([]);
       } else {
-        const errorData = await response.json();
-        setError(errorData.message || 'Error al crear la playlist.');
+        console.error('Error creating playlist:', playlistResponse.status);
       }
-    } catch (e) {
-      setError(e.message);
+    } catch (error) {
+      console.error('Error:', error);
     }
+  };
+
+  const handleAddEntry = () => {
+    setEntries([...entries, { order: entries.length, id: null }]);
+  };
+
+  const handleEntryChange = (index, field, value) => {
+    const updatedEntries = [...entries];
+    updatedEntries[index][field] = value;
+    updatedEntries[index].order = index;
+    setEntries(updatedEntries);
   };
 
   return (
     <div className={styles.cuerp}>
       <h1 className={styles.acheuno}>Crear Nueva Playlist</h1>
-      <div>
-        {error && <div className="error-message">{error}</div>}
-        {success && <div className="success-message">Playlist creada con éxito.</div>}
-      </div>
       <div className={styles.contenido}>
         <form onSubmit={handleSubmit} className={styles.newform}>
           <label>
             Nombre: <br />
-            <input
-              className={styles.miinput}
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <input type="text" value={name} className={styles.miinput} onChange={(e) => setName(e.target.value)} required />
           </label>
           <br />
           <label>
             Descripción: <br />
-            <textarea
-              className={styles.miinput}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+            <textarea value={description} className={styles.miinput} onChange={(e) => setDescription(e.target.value)}></textarea>
           </label>
           <br />
           <label>
-            Marcar como Pública: &nbsp; &nbsp; 
-            <input
-              type="checkbox"
-              checked={isPublic}
-              onChange={(e) => setIsPublic(e.target.checked)}
-            />
+            Marcar como Pública: &nbsp; &nbsp;
+            <input type="checkbox" checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />
           </label>
           <br />
-          <label>
-            Entradas (IDs de canciones separados por comas): <br />
-            <input
-              className={styles.miinput}
-              type="text"
-              value={entries}
-              onChange={(e) => setEntries(e.target.value)}
-            />
-          </label>
           <br />
+          <h3>Canciones</h3>
+          {entries.map((entry, index) => (
+            <div key={index}>
+              <label>
+                Número de Orden {index} para ID de canción:
+                <input type="number" value={entry.id} className={styles.miinput} onChange={(e) => handleEntryChange(index, 'id', e.target.value)} />
+              </label>
+            </div>
+          ))}
+          <button className={styles.customfileupload} type="button" onClick={handleAddEntry}>
+            Agregar Cancion:
+          </button>
           <button className={styles.buttonnew} type="submit">Crear Playlist</button>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default NewPlaylistForm;

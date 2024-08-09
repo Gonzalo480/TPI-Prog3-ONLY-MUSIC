@@ -1,6 +1,6 @@
 .piepagina {
     width: auto;
-    margin-left: 7.8125vw;
+    margin-left: 150px; /* 7.8125vw = 150px */
     background-color: var(--bg-input-color);
     position: unset;
     bottom: 0;
@@ -8,12 +8,12 @@
 
 .piepagina .grupo1 {
     width: 100%;
-    max-width: 62.5vw; 
+    max-width: 1200px; /* 62.5vw = 1200px */
     display: grid;
     grid-template-columns: repeat(3, auto);
-    grid-gap: 2.60417vw; 
-    row-gap: 2.60417vw; 
-    padding: 2.34375vh 0 0 10.4167vw;
+    grid-gap: 50px; /* 2.60417vw = 50px */
+    row-gap: 50px; /* 2.60417vw = 50px */
+    padding: 30px 0 0 200px; /* 2.34375vh = 30px, 10.4167vw = 200px */
 }
 
 .piepagina .grupo1 .box figure {
@@ -24,29 +24,29 @@
 }
 
 .piepagina .grupo1 .box figure img {
-    width: 10.4167vw;
+    width: 200px; /* 10.4167vw = 200px */
 }
 
 .piepagina .grupo1 .box h2 {
     color: var(--text-color);
-    margin-bottom: 2.31481vh;
-    font-size: 1.85185vh;
+    margin-bottom: 34px; /* 2.31481vh = 34px */
+    font-size: 16px; /* 1.85185vh = 16px */
 }
 
 .piepagina .grupo1 .box p {
     color: var(--text-color);
-    margin-bottom: 0.92593vh;
+    margin-bottom: 13px; /* 0.92593vh = 13px */
     text-align: start;
 }
 
 .piepagina .grupo1 .redsocial a {
     display: inline-block;
     text-decoration: none;
-    width: 2.34375vw;
-    height: 2.34375vw; 
-    line-height: 2.34375vw; 
+    width: 45px; /* 2.34375vw = 45px */
+    height: 45px; /* 2.34375vw = 45px */
+    line-height: 45px; /* 2.34375vw = 45px */
     color: #fff;
-    margin-right: 0.52083vw;
+    margin-right: 10px; /* 0.52083vw = 10px */
     background-color: var(--third-bis-color);
     text-align: center;
     transition: all 300ms ease;
@@ -62,14 +62,15 @@
 
 .piepagina .grupo2 {
     background-color: var(--third-bis-color);
-    padding: 0.78125vh 0.52083vw;
+    padding: 12px 10px; /* 0.78125vh = 12px, 0.52083vw = 10px */
     text-align: center;
     color: #fff;
 }
 
 .piepagina .grupo2 small {
-    font-size: 1.38889vh;
+    font-size: 10px; /* 1.38889vh = 10px */
 }
+
 
 
 @media (max-width: 1200px) {

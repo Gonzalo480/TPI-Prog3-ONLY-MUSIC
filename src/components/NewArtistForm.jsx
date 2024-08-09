@@ -29,16 +29,13 @@ function NewArtistForm() {
       return;
     }
 
-    const songsArray = songs.split(',').map(song => parseInt(song.trim())).filter(song => !isNaN(song));
-
     const formData = new FormData();
     formData.append('name', name);
     formData.append('bio', bio);
     formData.append('website', website);
     if (image) {
       formData.append('image', image);
-    }
-    formData.append('songs', JSON.stringify(songsArray));
+    };
 
     try {
       const response = await fetch('https://sandbox.academiadevelopers.com/harmonyhub/artists/', {
@@ -51,15 +48,33 @@ function NewArtistForm() {
 
       if (response.ok) {
         setSuccess(true);
-        alert('Artista creado con éxito.');
+        setSuccess(true);
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Género creado con éxito.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        }).then(() => {
+          window.location.href = '/artist';
+        });
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Error al crear el artista.');
-        alert(errorData.message || 'Error al crear el artista.');
+        Swal.fire({
+          title: 'Error',
+          text: 'Error al crear el artista.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
       }
     } catch (e) {
       setError('Error de red al crear el artista.');
-      alert('Error de red al crear el artista.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Error de red al crear el artista.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
     }
   };
 
@@ -123,15 +138,6 @@ function NewArtistForm() {
               <span className={styles.filename}>{imageFileName}</span>
             </label>
             <br />
-            <label>
-              Canciones (IDs separados por comas): <br />
-              <input
-                className={styles.miinput}
-                type="text"
-                value={songs}
-                onChange={(e) => setSongs(e.target.value)}
-              />
-            </label>
             <br />
             <button className={styles.buttonnew} type="submit">Crear Artista</button>
           </form>

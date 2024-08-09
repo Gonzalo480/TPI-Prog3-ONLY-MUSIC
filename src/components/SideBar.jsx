@@ -31,6 +31,7 @@ function SideBar() {
             <Link to="/" className={styles.enlacesa}>»Artistas Agregados</Link>
             <Link to="/newartist" className={styles.enlacesa}>»Agregar Artista</Link>
         <br />
+        <br />
             <a href="#" className={styles.enlacesa} onClick={handleLogout}>Cerrar Sesión</a>
           </>
          : <><Link to="/login" className={styles.enlacesa}>»Iniciar sesion</Link></>

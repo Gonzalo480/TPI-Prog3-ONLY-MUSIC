@@ -1,10 +1,10 @@
 .logo {
     cursor: pointer;
-    padding-bottom: 1.85185vh; 
+    padding-bottom: 8px; 
 }
 
 .logo img {
-    height: 11.1111vh; 
+    height: 100px; 
     width: auto;
 }
 
@@ -22,66 +22,35 @@
     left: 0;
     background-color: var(--bg-color);
     overflow: hidden;
-    padding: 1.85185vh; 
-    box-shadow: 0.3125vw 1.04167vw 0.52083vw var(--third-bis-color); 
+    padding: 10px; 
+    box-shadow: 3px 4px 10px var(--third-bis-color); 
     text-decoration: none;
 }
 
 .sidebar_nav .enlacesa {
-    padding: 1.1111vh; 
+    padding: 8px; 
     text-shadow: 2px 1px 4px #000000;
     font-weight: bold;
     text-decoration: none;
-    font-size: 18px; 
+    font-size: 16px; 
     color: var(--third-bis-color);
     display: block;
     text-align: justify;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .sidebar_nav .enlacesa:hover {
     color: var(--neon-color);
-    font-weight: 500;
     background-color: var(--bg-color);
-    border-radius: 0.52083vw; 
-    box-shadow: 0.15625vw 0.36458vw 0.26042vw var(--third-bis-color); 
+    border-radius: 8px; 
+    box-shadow: 3px 4px 5px var(--third-bis-color); 
     text-decoration: none;
 }
 
 .sidebar_nav i {
-    margin-right: 0.26042vw; 
+    margin-right: 26px; 
 }
 
-
-@media (max-width: 1200px) {
-    .sidebar_nav {
-        width: 12vw;
-        padding: 1.5vh;
-    }
-
-    .sidebar_nav .enlacesa {
-        font-size: 1.5vh;
-    }
-
-    .logo img {
-        height: 10vh;
-    }
-}
-
-@media (max-width: 992px) {
-    .sidebar_nav {
-        width: 15vw;
-        padding: 1.2vh;
-    }
-
-    .sidebar_nav .enlacesa {
-        font-size: 1.2vh;
-    }
-
-    .logo img {
-        height: 8vh;
-    }
-}
 
 @media (max-width: 768px) {
     .sidebar_nav {

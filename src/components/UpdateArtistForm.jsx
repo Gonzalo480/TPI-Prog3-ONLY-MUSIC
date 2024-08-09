@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import styles from "./newSongForm.module.css";
 
 function UpdateArtistForm() {
@@ -118,7 +117,7 @@ function UpdateArtistForm() {
           allowEscapeKey: false,
           allowEnterKey: false
         }).then(() => {
-          window.location.href = `/artist/${id}`;
+          window.location.href = `/artist`;
         });
       } else {
         const errorData = await response.json();

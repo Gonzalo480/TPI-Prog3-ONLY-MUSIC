@@ -18,8 +18,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 16px;
   color: var(--primary-color);
 }
@@ -33,14 +33,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 20px auto;
-  width: 250vw;
-  max-width: 800px;
+  width: 800px;
   text-align: center; 
 }
 
 .contenido .miinput {
-  width: 31.8vw;
-  height: 4vh ;
+  width: 600px;
+  height: 50px ;
 }
 
 .buttonnew:hover {
@@ -64,7 +63,7 @@
 }
 
 .customfileupload {
-  font-weight: 400;
+  font-weight:bold;
   color: var(--text-color);
   padding: 9px 25px;
   background: linear-gradient(to bottom right,  var(--third-color), var(--third-bis-color) , var(--bg-input-color));
@@ -92,8 +91,8 @@
 }
 
 .contenido .miinput2 {
-  width: 31.8vw;
-  height: 15vh ;
+  width: 600px;
+  height: 160px ;
 }
 
 .center {

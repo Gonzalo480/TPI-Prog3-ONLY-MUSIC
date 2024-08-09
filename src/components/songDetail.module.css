@@ -44,3 +44,8 @@
   transition: all 0.3s ease 0s;
   margin: 0 0.2em 0 0.2em;
 }
+
+.songdetailcontainer button:hover{
+  background: linear-gradient(to bottom right,   var(--bg-input-color), var(--third-bis-color) ,var(--third-color));
+
+}

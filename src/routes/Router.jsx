@@ -27,6 +27,9 @@ import Slider from '../components/Slider';
 import UserAlbums from '../components/UserAlbums';
 import PlaylistList from '../components/MusicPlayer/PlaylistList';
 import UpdatePlaylistForm from '../components/UpdatePlaylistForm';
+import PlaylistDetail from '../components/PlaylistDetail';
+import ProfileViewer from '../components/ProfileViewer';
+import UpdateArtistForm from '../components/UpdateArtistForm';
 
 
 const Router = createBrowserRouter(
@@ -56,9 +59,12 @@ const Router = createBrowserRouter(
       <Route path="/albumsguser" element={<UserAlbums />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/playlists" element={<PlaylistList />} />
+      <Route path="/playlists/:id" element={<PlaylistDetail />} />
       <Route path="/search-results" element={<SearchResults />} />
       <Route path="/updatealbum/:id" element={<UpdateAlbumForm />} />
+      <Route path="/updateartist/:id" element={<UpdateArtistForm />} />
       <Route path="/update/:id" element={<UpdateSongForm />} />
+      <Route path="/viewerprofile/:id" element={<ProfileViewer/>} />
       <Route path="/updateplaylist/:id" element={<UpdatePlaylistForm />} />
       <Route path="/updateprofile/:userId" element={
       <ProtectedRoute>

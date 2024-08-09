@@ -1,7 +1,8 @@
-import React from 'react';
-import './Artists.css';
+import React , { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
-function ArtistCard({ artist }) {
+function ArtistCard({ artist, onUpdate }) {
+    const { user } = useContext(AuthContext);
     const isValidImage = artist.image && typeof artist.image === 'string' && artist.image.trim() !== '';
 
     return (
@@ -18,11 +19,24 @@ function ArtistCard({ artist }) {
                         )}
                     </div>
                     <div className="media-content">
-                        <p className={`title is-4 has-text-white`}>
+                        <p className="title3">
                             {artist.name}
                         </p>
+                        <p className='info2' >{artist.bio}</p>
+                        {artist.website !== null && (
+                            <a className='info3' href={artist.website}>WebSite</a>)}
                     </div>
                 </div>
+                {user && user.user__id === artist.owner && (
+                    <>
+                        <button className="button is-primary" onClick={() => onUpdate(artist)}>
+                            Actualizar
+                        </button>
+                        <button className="button is-danger" >
+                            Eliminar
+                        </button>
+                    </>)}
+                    <br /><br />
             </div>
         </div>
     );

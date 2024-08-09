@@ -1,5 +1,4 @@
 import React from 'react';
-import './Genre.css';
 
 function GenreCard({ genre }) {
     return (

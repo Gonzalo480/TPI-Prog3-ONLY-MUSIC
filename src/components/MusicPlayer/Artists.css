@@ -14,13 +14,12 @@
     justify-content: center;
 }
 
-.title2 {
+.title3 {
     text-align: center;
-    color: var(--neon-color);
-    font-size: 50px;
+    color: var(--neon-new);
+    font-size: 40px;
     font-weight: bold;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px;
 }
 
 .title {
@@ -78,4 +77,21 @@
 .button:hover {
     background:var(--primary-color);
     align-items: center;
+}
+
+.info2 {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.info3 {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.media-content {
+    text-align: center;
 }

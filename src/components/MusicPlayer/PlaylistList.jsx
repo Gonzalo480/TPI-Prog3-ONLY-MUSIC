@@ -148,16 +148,16 @@ function PlaylistList() {
                         ))}
                     </ul>
                     <br /><br />
-                    {isLoading && <><div class="loader-container">
-                        <spam className="carga" >Cargando más listas de reproducción...</spam>
-                        <div class="fading-bars">
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
-                        <div class="bar"></div>
+                    {isLoading && <><div className="loader-container">
+                        <spam className="carga">Cargando más listas de reproducción...</spam>
+                        <div className="fading-bars">
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
                         </div>
-                        </div></>}
+                    </div></>}
                     {nextURL && !isLoading && (
                         <button
                             className="button is-primary"

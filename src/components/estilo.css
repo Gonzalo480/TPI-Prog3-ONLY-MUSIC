@@ -1,0 +1,45 @@
+.playlist-view-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.song-item {
+    margin-bottom: 15px;
+}
+
+.song-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+audio {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.loader {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.error-message {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+    margin-top: 50px;
+}

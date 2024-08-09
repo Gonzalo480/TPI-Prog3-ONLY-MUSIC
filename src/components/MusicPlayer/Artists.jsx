@@ -2,15 +2,21 @@ import React, { useState } from 'react';
 import ArtistCard from './ArtistCard'; 
 import { useFetchArtists } from '../../hooks/useFetchArtists';
 import './Artists.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ArtistList() {
     const [page, setPage] = useState(1);
     const { artists, nextURL, isError, isLoading } = useFetchArtists(page);
+    const navigate = useNavigate();
 
     function handleLoadMore() {
         if (nextURL) {
             setPage(currentPage => currentPage + 1);
         }
+    }
+
+    function handleUpdate(artist) {
+        navigate(`/updateartist/${artist.id}`);
     }
 
     return (
@@ -22,7 +28,7 @@ export default function ArtistList() {
                     <ul>
                         {artists.map(artist => (
                             <div key={artist.id} className="column">
-                                <ArtistCard artist={artist} />
+                                <ArtistCard artist={artist} onUpdate={handleUpdate} />
                             </div>
                         ))}
                     </ul>

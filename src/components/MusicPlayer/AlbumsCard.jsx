@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import './Albums.css';
 
 function AlbumCard({ album, onUpdate, onDelete }) {
     const { user } = useContext(AuthContext);
@@ -17,12 +16,8 @@ function AlbumCard({ album, onUpdate, onDelete }) {
                     </div>
                     <div className="media-content">
                         <p className={`title is-4 has-text-white`}>{album.title}</p>
-                        <p className={`subtitle is-6 has-text-white`}>{album.artist}</p>
+                        <p className="has-text-white">Artista: {album.artist}</p>
                     </div>
-                </div>
-                <div className="content">
-                    <p className="has-text-white">{album.description}</p>
-                    <p className="has-text-white">{`Released: ${album.release_date}`}</p>
                 </div>
                 {user && user.user__id === album.owner && (
                     <>
