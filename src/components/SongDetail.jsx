@@ -153,6 +153,7 @@ function SongDetail() {
       {song && (
         <>
           <h1>{song.title}</h1>
+          <p>ID: {song.id}</p>
           <p>Álbum: {song.album}</p>
           <p>Artistas: {song.artists.join(", ")}</p>
           <p>Géneros: {song.genres.join(", ")}</p>

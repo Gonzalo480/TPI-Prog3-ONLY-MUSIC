@@ -16,9 +16,9 @@ function Slider() {
       setImagenActual((prevImagen) => (prevImagen + 1) % cantidad);
     }, 8000);
 
-    // Limpia el intervalo cuando el componente se desmonta
+  
     return () => clearInterval(intervalId);
-  }, [cantidad]); // El segundo argumento asegura que se ejecute cuando cambie la cantidad de imágenes
+  }, [cantidad]); 
 
   const siguienteImagen = () => {
     setImagenActual((prevImagen) => (prevImagen + 1) % cantidad);

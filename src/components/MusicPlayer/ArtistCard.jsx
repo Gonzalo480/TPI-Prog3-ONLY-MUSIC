@@ -1,7 +1,7 @@
-import React , { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-function ArtistCard({ artist, onUpdate }) {
+function ArtistCard({ artist, onUpdate, onDelete }) {
     const { user } = useContext(AuthContext);
     const isValidImage = artist.image && typeof artist.image === 'string' && artist.image.trim() !== '';
 
@@ -15,14 +15,16 @@ function ArtistCard({ artist, onUpdate }) {
                                 <img src={artist.image} alt={artist.name} />
                             </figure>
                         ) : (
-                            <div style={{ width: '48px', height: '48px' }}></div>
+                            <figure className="image is-48x48">
+                                <img src="../../../public/artel-diseno-portada.jpg" alt={artist.name} />
+                            </figure>
                         )}
                     </div>
                     <div className="media-content">
                         <p className="title3">
                             {artist.name}
                         </p>
-                        <p className='info2' >{artist.bio}</p>
+                        <p className='info2'>{artist.bio}</p>
                         {artist.website !== null && (
                             <a className='info3' href={artist.website}>WebSite</a>)}
                     </div>
@@ -32,11 +34,12 @@ function ArtistCard({ artist, onUpdate }) {
                         <button className="button is-primary" onClick={() => onUpdate(artist)}>
                             Actualizar
                         </button>
-                        <button className="button is-danger" >
+                        <button className="button is-danger" onClick={() => onDelete(artist.id)}>
                             Eliminar
                         </button>
-                    </>)}
-                    <br /><br />
+                    </>
+                )}
+                <br /><br />
             </div>
         </div>
     );

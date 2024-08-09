@@ -10,7 +10,7 @@ export function useFetchGenres(page) {
         const doFetch = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch(`https://sandbox.academiadevelopers.com/harmonyhub/genres/`);
+                const response = await fetch(`https://sandbox.academiadevelopers.com/harmonyhub/genres/?page=${page}`);
                 if (!response.ok) {
                     throw new Error("No se pudieron cargar los géneros");
                 }

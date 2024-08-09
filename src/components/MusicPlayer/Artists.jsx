@@ -19,6 +19,82 @@ export default function ArtistList() {
         navigate(`/updateartist/${artist.id}`);
     }
 
+    async function handleDelete(artistId) {
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Debe iniciar sesión para eliminar un artista.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(
+                        `https://sandbox.academiadevelopers.com/harmonyhub/artists/${artistId}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': `Token ${token}`
+                    },
+                    credentials: 'include',
+                }
+            );
+
+            if (response.ok) {
+                Swal.fire({
+                    title: 'Eliminado',
+                    text: 'El artista ha sido eliminado.',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                const errorData = await response.json();
+                Swal.fire({
+                    title: 'Error',
+                    text: errorData.message || 'Error al eliminar el artista.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false
+                });
+            }
+        } catch (e) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Error de red al eliminar el artista. Por favor, intente nuevamente.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false
+            });
+        }
+    }
+});
+}
+
     return (
         <div className='conte'>
             <div className='cuer'>
@@ -28,12 +104,21 @@ export default function ArtistList() {
                     <ul>
                         {artists.map(artist => (
                             <div key={artist.id} className="column">
-                                <ArtistCard artist={artist} onUpdate={handleUpdate} />
+                                <ArtistCard artist={artist} onUpdate={handleUpdate} onDelete={handleDelete} />
                             </div>
                         ))}
                     </ul>
                     <br /><br />
-                    {isLoading && <p>Cargando más artistas...</p>}
+                    {isLoading && <><div className="loader-container">
+                        <spam className="carga">Cargando más artistas...</spam>
+                        <div className="fading-bars">
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                            <div className="bar"></div>
+                        </div>
+                    </div></>}
                     {nextURL && !isLoading && (
                         <button
                             className="button"
@@ -42,7 +127,7 @@ export default function ArtistList() {
                             Cargar más
                         </button>
                     )}
-                     <br /><br />
+                    <br /><br />
                 </div>
             </div>
         </div>

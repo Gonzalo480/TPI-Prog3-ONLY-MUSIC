@@ -37,6 +37,7 @@
     margin-top: 100px;
     display: flex;
     justify-content: center;
+    margin-bottom: 100px;
 }
 
 
@@ -46,6 +47,8 @@
     padding: 150px;
     color: var(--text-color);
     font-size: xx-large;
+    margin-left: 10vw;
+    margin-right: 10vw;
 }
 
 .album-card {

@@ -23,9 +23,12 @@ function PlaylistCard({ playlist, onUpdate, onDelete }) {
                     <div className="media-content">
                         <p className="titlep">{playlist.name}</p>
                         <p className="has-text-white">Creador:  {playlist.owner}</p>
+
+                        {user && user.user__id !== playlist.owner && (
+
                         <button className="button is-link" onClick={handleOpenProfile}>
                         Ver Perfil
-                        </button>
+                        </button>)}
                        <br /><br />
                     </div>
                 </div>

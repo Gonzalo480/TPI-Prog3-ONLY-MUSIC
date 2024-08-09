@@ -25,7 +25,6 @@ const NewPlaylistForm = () => {
         const playlistData = await playlistResponse.json();
         console.log('Playlist created:', playlistData);
 
-        // Add entries to the new playlist
         for (const song of entries) {
           await fetch('https://sandbox.academiadevelopers.com/harmonyhub/playlist-entries/', {
             method: 'POST',
@@ -37,7 +36,7 @@ const NewPlaylistForm = () => {
           });
         }
 
-        // Reset form fields
+  
         setName('');
         setDescription('');
         setIsPublic(false);

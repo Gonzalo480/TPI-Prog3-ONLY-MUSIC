@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import styles from "./newSongForm.module.css";
 
 function UpdateGenreForm() {
@@ -35,7 +34,7 @@ function UpdateGenreForm() {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Token ${token}`,
         },
       });
 
@@ -81,9 +80,6 @@ function UpdateGenreForm() {
         text: 'Debe iniciar sesión para actualizar un género.',
         icon: 'error',
         confirmButtonText: 'OK',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        allowEnterKey: false
       });
       setError('Debe iniciar sesión para actualizar un género.');
       return;
@@ -111,11 +107,8 @@ function UpdateGenreForm() {
           text: 'Género actualizado con éxito.',
           icon: 'success',
           confirmButtonText: 'OK',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          allowEnterKey: false
         }).then(() => {
-          window.location.href = `/genre/${id}`;
+          window.location.href = `/genres`;
         });
       } else {
         const errorData = await response.json();

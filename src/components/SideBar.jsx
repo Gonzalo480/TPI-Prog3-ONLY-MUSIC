@@ -20,15 +20,15 @@ function SideBar() {
         {token ?
           <>
             <Link to="/profile" className={styles.enlacesa}>»Perfil</Link>
-            <Link to="/" className={styles.enlacesa}>»Mis PlayList</Link>
+            <Link to="/userplaylist" className={styles.enlacesa}>»Mis PlayList</Link>
             <Link to="/newplaylist" className={styles.enlacesa}>»Agregar PlayList</Link>
             <Link to="/songuser" className={styles.enlacesa}>»Canciones Subidas</Link>
             <Link to="/new" className={styles.enlacesa}>»Subir Canción</Link>
-            <Link to="/albumsguser" className={styles.enlacesa}>»Albunes Agregados</Link>
+            <Link to="/albumsuser" className={styles.enlacesa}>»Albunes Agregados</Link>
             <Link to="/newalbum" className={styles.enlacesa}>»Agregar Album</Link>
-            <Link to="/" className={styles.enlacesa}>»Generos Agregados</Link>
+            <Link to="/genresuser" className={styles.enlacesa}>»Generos Agregados</Link>
             <Link to="/newgenre" className={styles.enlacesa}>»Agregar Genero</Link>
-            <Link to="/" className={styles.enlacesa}>»Artistas Agregados</Link>
+            <Link to="/userartist" className={styles.enlacesa}>»Artistas Agregados</Link>
             <Link to="/newartist" className={styles.enlacesa}>»Agregar Artista</Link>
         <br />
         <br />

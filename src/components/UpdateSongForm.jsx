@@ -98,7 +98,6 @@ function UpdateSongForm() {
       return;
     }
 
-    // Convertir los campos de géneros y artistas a arrays de números
     const genresArray = genres.split(',').map(num => parseInt(num.trim(), 10)).filter(num => !isNaN(num));
     const artistsArray = artists.split(',').map(num => parseInt(num.trim(), 10)).filter(num => !isNaN(num));
 

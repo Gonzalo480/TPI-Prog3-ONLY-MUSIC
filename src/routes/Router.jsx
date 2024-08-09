@@ -30,6 +30,10 @@ import UpdatePlaylistForm from '../components/UpdatePlaylistForm';
 import PlaylistDetail from '../components/PlaylistDetail';
 import ProfileViewer from '../components/ProfileViewer';
 import UpdateArtistForm from '../components/UpdateArtistForm';
+import UpdateGenreForm from '../components/UpdateGenreForm';
+import UserPlaylists from '../components/UserPlaylists';
+import UserArtists from '../components/UserArtists';
+import UserGenres from '../components/UserGenres';
 
 
 const Router = createBrowserRouter(
@@ -37,7 +41,7 @@ const Router = createBrowserRouter(
     <Route element={<Layout />}>
       <Route
         path="/"
-        element={localStorage.getItem("token") ? <> <Slider /> <RecommendedSongs /> <SongUser /> </> : <Inicio />}
+        element={localStorage.getItem("token") ? <> <Slider /> <RecommendedSongs /> <SongUser /> <UserPlaylists /> </> : <Inicio />}
       />
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={
@@ -56,15 +60,19 @@ const Router = createBrowserRouter(
       <Route path="/songs" element={<SongList />} />
       <Route path="/song/:id" element={<SongDetail />} />
       <Route path="/songuser" element={<SongUser />} />
-      <Route path="/albumsguser" element={<UserAlbums />} />
+      <Route path="/genresuser" element={<UserGenres />} />
+      <Route path="/albumsuser" element={<UserAlbums />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/playlists" element={<PlaylistList />} />
       <Route path="/playlists/:id" element={<PlaylistDetail />} />
       <Route path="/search-results" element={<SearchResults />} />
+      <Route path="/userplaylist" element={<UserPlaylists />} />
+      <Route path="/userartist" element={<UserArtists />} />
       <Route path="/updatealbum/:id" element={<UpdateAlbumForm />} />
       <Route path="/updateartist/:id" element={<UpdateArtistForm />} />
       <Route path="/update/:id" element={<UpdateSongForm />} />
       <Route path="/viewerprofile/:id" element={<ProfileViewer/>} />
+      <Route path="/updategenre/:id" element={<UpdateGenreForm />} />
       <Route path="/updateplaylist/:id" element={<UpdatePlaylistForm />} />
       <Route path="/updateprofile/:userId" element={
       <ProtectedRoute>
