@@ -4,7 +4,7 @@
 
 ## 🔍 Introducción - Una Introducción a la Melodía
 
-En un rincón del mundo digital, un equipo de soñadores se embarcó en una travesía. Armados con **ReactJS**, **Vite**, y un amor por la música, crearon **Only Music**, una aplicación diseñada para aquellos que ven la música como más que sonidos: como emociones.
+En un rincón del mundo digital, un equipo de soñadores se embarcó en una travesía. Armados con **ReactJS**, **Vite**, y un amor por la música, **Only Music**, una aplicación diseñada para aquellos que ven la música como más que sonidos: como emociones.
 Más que una simple aplicación de música. Es el resultado de meses de aprendizaje, esfuerzo y pasión, encapsulado en una plataforma web. Nos propusimos crear una experiencia fluida, fácil de usar y accesible para todos.
 Una aplicación web creada para poner a prueba nuestros conocimientos. A lo largo de su desarrollo, hemos enfocado nuestros esfuerzos en cumplir con los requerimientos académicos mientras brindamos una experiencia de usuario fluida y atractiva.
 
