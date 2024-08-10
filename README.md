@@ -1,6 +1,19 @@
 # Only Music: La Sinfonía del Desarrollo - Donde la Música Cobra Vida.
 
+## Índice
 
+1. [Introducción](#-introducción---una-introducción-a-la-melodía)
+2. [Página de Deployments](#-página-de-deployments---escucha-el-proyecto-en-vivo)
+3. [Documentación y Tablero de Proyecto](#-documentación-y-tablero-de-proyecto---lee-la-partitura)
+4. [Objetivos](#-objetivos)
+5. [Tecnologías al Servicio del Arte](#-tecnologías-al-servicio-del-arte)
+6. [Estructura Intuitiva](#-estructura-intuitiva---un-viaje-a-través-de-la-estructura)
+7. [Componentes Principales](#-componentes-principales---nuestros-componentes-nuestra-música)
+8. [Funcionalidades Principales](#-funcionalidades-principales---funcionalidades-que-hacen-la-diferencia)
+9. [Enrutamiento y Funcionalidades](#-enrutamiento-y-funcionalidades-solo-usuarios-autenticados)
+10. [Equipo de Desarrollo](#-equipo-de-desarrollo---el-equipo-detrás-de-la-sinfonía)
+
+---
 
 ## 🔍 Introducción - Una Introducción a la Melodía
 
