@@ -1,6 +1,6 @@
 # Only Music: La Sinfonía del Desarrollo - Donde la Música Cobra Vida.
 
-## Índice
+## 📃 Índice
 
 1. [Introducción](#-introducción---una-introducción-a-la-melodía)
 2. [Página de Deployments](#-página-de-deployments---escucha-el-proyecto-en-vivo)
@@ -116,4 +116,4 @@ Una aplicación web creada para poner a prueba nuestros conocimientos. A lo larg
 
 ---
 
-**Only Music: Donde cada clic es una nota, y cada usuario, un músico.**
+🎧 **Only Music: Donde cada clic es una nota, y cada usuario, un músico.**
