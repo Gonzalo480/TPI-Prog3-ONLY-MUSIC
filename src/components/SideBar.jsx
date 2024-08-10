@@ -14,6 +14,7 @@ function SideBar() {
     <nav className={styles.sidebar_nav}>
       <div className={styles.logo}>
         <Link to="/"><img src="https://i23.servimg.com/u/f23/11/92/85/94/disezo10.png" alt="Logo" /></Link>
+        <img src="https://i23.servimg.com/u/f23/11/92/85/94/disezo10.png" alt="Logo" />
       </div>
       <div>
         <Link to="/" className={styles.enlacesa}>»Inicio</Link>
