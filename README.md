@@ -10,7 +10,7 @@
 6. [Estructura Intuitiva](#%EF%B8%8F-estructura-intuitiva---un-viaje-a-través-de-la-estructura)
 7. [Componentes Principales](#-componentes-principales---nuestros-componentes-nuestra-música)
 8. [Funcionalidades Principales](#-funcionalidades-principales---funcionalidades-que-hacen-la-diferencia)
-9. [Enrutamiento y Funcionalidades](#-enrutamiento-y-funcionalidades-solo-usuarios-autenticados)
+9. [Enrutamiento y Funcionalidades](#%EF%B8%8F-enrutamiento-y-funcionalidades-solo-usuarios-autenticados)
 10. [Equipo de Desarrollo](#-equipo-de-desarrollo---el-equipo-detrás-de-la-sinfonía)
 
 ---
