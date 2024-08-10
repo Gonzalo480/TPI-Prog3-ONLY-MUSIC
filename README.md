@@ -7,7 +7,7 @@
 3. [Documentación y Tablero de Proyecto](#-documentación-y-tablero-de-proyecto---lee-la-partitura)
 4. [Objetivos](#-objetivos)
 5. [Tecnologías al Servicio del Arte](#-tecnologías-al-servicio-del-arte)
-6. [Estructura Intuitiva](#-estructura-intuitiva---un-viaje-a-través-de-la-estructura)
+6. [Estructura Intuitiva](#%EF%B8%8F-estructura-intuitiva---un-viaje-a-través-de-la-estructura)
 7. [Componentes Principales](#-componentes-principales---nuestros-componentes-nuestra-música)
 8. [Funcionalidades Principales](#-funcionalidades-principales---funcionalidades-que-hacen-la-diferencia)
 9. [Enrutamiento y Funcionalidades](#-enrutamiento-y-funcionalidades-solo-usuarios-autenticados)
