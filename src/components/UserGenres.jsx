@@ -78,6 +78,86 @@ export default function UserGenres() {
         }
     };
 
+    const handleUpdate = (album) => {
+        navigate(`/updategenre/${album.id}`);
+    };
+
+    const handleDelete = async (albumId) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Debe iniciar sesión para eliminar un álbum.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false
+            });
+            return;
+        }
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(
+                        `https://sandbox.academiadevelopers.com/harmonyhub/albums/${albumId}/`,
+                        {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-type': 'application/json',
+                                Authorization: `Bearer ${token}`,
+                            },
+                            credentials: 'include',
+                        }
+                    );
+
+                    if (response.ok) {
+                        Swal.fire({
+                            title: 'Eliminado',
+                            text: 'El álbum ha sido eliminado.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false
+                        }).then(() => {
+                            setAlbums(albums.filter(album => album.id !== albumId));
+                        });
+                    } else {
+                        const errorData = await response.json();
+                        Swal.fire({
+                            title: 'Error',
+                            text: errorData.message || 'Error al eliminar el álbum.',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: false
+                        });
+                    }
+                } catch (e) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Error de red al eliminar el álbum. Por favor, intente nuevamente.',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false
+                    });
+                }
+            }
+        });
+    };
+
     return (
         <div className='conte'>
             <div className='cuer'>
@@ -87,7 +167,7 @@ export default function UserGenres() {
                     <ul>
                         {genres.map(genre => (
                             <div key={genre.id} className="column">
-                                <GenreCard genre={genre} />
+                                <GenreCard genre={genre} onUpdate={handleUpdate} onDelete={handleDelete} />
                             </div>
                         ))}
                     </ul>

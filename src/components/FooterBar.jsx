@@ -9,7 +9,7 @@ function FooterBar() {
         <div className={styles.grupo1}>
             <div className={styles.box}>
             <figure>
-                <Link to="/contact"><img src="../../public/contacto.png" alt="Logo grupo 8" /></Link>
+                <Link to="/contact"><img src="contacto.png" alt="Logo grupo 8" /></Link>
             </figure>
             </div>
             <div className={styles.box}>

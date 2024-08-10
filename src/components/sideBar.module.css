@@ -52,32 +52,17 @@
 }
 
 
-@media (max-width: 768px) {
-    .sidebar_nav {
-        width: 20vw;
-        padding: 1vh;
-    }
-
+@media (max-width: 1360px) {
     .sidebar_nav .enlacesa {
-        font-size: 1vh;
+        font-size: 12px; 
     }
-
     .logo img {
-        height: 6vh;
+        height: 100px; 
+        width: auto;
+    }
+    .sidebar_nav {
+        width: 160px; 
+        padding: 8px; 
     }
 }
 
-@media (max-width: 576px) {
-    .sidebar_nav {
-        width: 25vw;
-        padding: 0.8vh;
-    }
-
-    .sidebar_nav .enlacesa {
-        font-size: 0.8vh;
-    }
-
-    .logo img {
-        height: 5vh;
-    }
-}

@@ -11,7 +11,7 @@ function Error() {
     <main>
       <div className={styles.cont1}>
         <div className={styles.cont2}>
-          <img src="./public/error.png" alt="error 404" />
+          <img src="error.png" alt="error 404" />
           <br />
         </div>
         <div className={styles.cont2}>

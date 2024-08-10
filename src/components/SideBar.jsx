@@ -13,7 +13,7 @@ function SideBar() {
   return (
     <nav className={styles.sidebar_nav}>
       <div className={styles.logo}>
-        <Link to="/"><img src="https://i23.servimg.com/u/f23/11/92/85/94/disezo10.png" alt="Logo" /></Link>
+        <Link to="/"><img src="Diseño-logo.png" alt="Logo" /></Link>
       </div>
       <div>
         <Link to="/" className={styles.enlacesa}>»Inicio</Link>

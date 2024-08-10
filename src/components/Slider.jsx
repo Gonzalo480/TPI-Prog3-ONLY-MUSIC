@@ -3,10 +3,10 @@ import estilos from './slider.module.css';
 
 function Slider() {
   const imagenes = [
-    "../../public/promos/promo.png",
-    "../../public/promos/preview-page0.jpg",
-    "../../public/promos/encabezado-twitter-festival.jpg",
-    "../../public/promos/banner-twitch-colorido.jpg"
+    "promo.png",
+    "previewpage0.jpg",
+    "encabezadotwitterfestival.jpg",
+    "bannertwitchcolorido.jpg"
   ];
   const [imagenActual, setImagenActual] = useState(0);
   const cantidad = imagenes?.length;
