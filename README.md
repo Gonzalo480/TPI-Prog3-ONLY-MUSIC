@@ -10,7 +10,7 @@ Una aplicación web creada para poner a prueba nuestros conocimientos. A lo larg
 
 ---
 
-## 🌐 Página de Deploy - Escucha el Proyecto en Vivo
+## 🌐 Página de Deployments - Escucha el Proyecto en Vivo
 
 - [Visita el Proyecto](https://tpi-prog3-only-music.vercel.app)
 
