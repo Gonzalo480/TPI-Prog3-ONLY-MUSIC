@@ -110,8 +110,9 @@ Una aplicación web creada para poner a prueba nuestros conocimientos. A lo larg
 ## 👥 Equipo de Desarrollo - El Equipo Detrás de la Sinfonía
 
 - Juan Antonio Artigas
-- Mercedes Vanesa Guitian
 - Mario Gonzalo Ponce
+- Mercedes Vanesa Guitian
+
 
 ---
 
