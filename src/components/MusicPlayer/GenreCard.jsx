@@ -13,6 +13,7 @@ function GenreCard({ genre, onUpdate, onDelete }) {
                         <div className="medialeft"></div>
                         <div className="mediacontent">
                             <p className="title">{genre.name}</p>
+                             <p className="title">{genre.id}</p>
                         </div>
                     </div>
                     <div className="content">
