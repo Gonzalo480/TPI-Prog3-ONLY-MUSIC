@@ -3,6 +3,34 @@ import { AuthContext } from '../context/AuthContext';
 import useFetchData from '../hooks/useFetchData';
 import styles from './recommendedSongs.module.css';
 
+
+function togglePlayPause(event) {
+  const element = event.currentTarget;
+  const audio = element.querySelector('audio');
+  const icon = element.querySelector('.play-icon');
+  const isPlaying = !audio.paused;
+
+  document.querySelectorAll('.music-item audio').forEach(a => {
+    if (a !== audio) {
+      a.pause();
+      a.currentTime = 0;
+      const otherIcon = a.closest('.music-item').querySelector('.play-icon');
+      otherIcon.classList.remove('fa-pause');
+      otherIcon.classList.add('fa-play');
+    }
+  });
+
+  if (isPlaying) {
+    audio.pause();
+    icon.classList.remove('fa-pause');
+    icon.classList.add('fa-play');
+  } else {
+    audio.play();
+    icon.classList.remove('fa-play');
+    icon.classList.add('fa-pause');
+  }
+}
+
 function RecommendedSongs() {
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("token");
