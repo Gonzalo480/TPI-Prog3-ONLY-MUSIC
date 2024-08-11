@@ -4,6 +4,7 @@ import styles from './profile.module.css';
 
 function Profile() {
     const { user, isLoading, logout } = useContext(AuthContext);
+    const isValidImage = user.image && typeof user.image === 'string' && user.image.trim() !== '';
 
     if (isLoading) return <div className={styles.loadingmessage}>Loading...</div>;
 
@@ -14,7 +15,7 @@ function Profile() {
                     {user ? (
                         <div>
                             <h1 className={styles.profileheading}>Perfil</h1>
-                            <img src={user.image === null ? "user.png" : `http://sandbox.academiadevelopers.com/${user.image}`} alt="imagen usuario" />
+                            <img src={isValidImage ? "user.png" : `http://sandbox.academiadevelopers.com/${user.image}`} alt="imagen usuario" />
                             <br />
                             <p className={styles.profiletext}>ID: {user.user__id}</p>
                             <p className={styles.profiletext}>Usuario: {user.username}</p>
