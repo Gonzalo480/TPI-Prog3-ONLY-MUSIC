@@ -16,7 +16,7 @@ function ArtistCard({ artist, onUpdate, onDelete }) {
                             </figure>
                         ) : (
                             <figure className="image is-48x48">
-                                <img src="../../../public/artel-diseno-portada.jpg" alt={artist.name} />
+                                <img src="artel-diseno-portada.jpg" alt={artist.name} />
                             </figure>
                         )}
                     </div>
