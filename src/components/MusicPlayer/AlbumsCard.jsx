@@ -31,7 +31,7 @@ function AlbumCard({ album, onUpdate, onDelete }) {
                 <div className="media">
                     <div className="media-left">
                         <figure className="image is-48x48">
-                            {isValidImage ? <img src={album.cover} alt={album.title} /> : <img src="../../../public/artel-diseno-portada.jpg" alt={album.title} />}
+                            {isValidImage ? <img src={album.cover} alt={album.title} /> : <img src="artel-diseno-portada.jpg" alt={album.title} />}
                         </figure>
                     </div>
                     <div className="media-content">
