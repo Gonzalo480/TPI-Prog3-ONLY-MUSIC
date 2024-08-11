@@ -24,6 +24,9 @@ function ArtistCard({ artist, onUpdate, onDelete }) {
                         <p className="title3">
                             {artist.name}
                         </p>
+                        <p className="title3">
+                            {artist.id}
+                        </p>
                         <p className='info2'>{artist.bio}</p>
                         {artist.website !== null && (
                             <a className='info3' href={artist.website}>WebSite</a>)}
