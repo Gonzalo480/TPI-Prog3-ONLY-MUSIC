@@ -36,6 +36,7 @@ function AlbumCard({ album, onUpdate, onDelete }) {
                     </div>
                     <div className="media-content">
                         <p className={`title is-4 has-text-white`}>{album.title}</p>
+                        <p className={`title is-4 has-text-white`}>{album.id}</p>
                         <p className="has-text-white">Artista: {artistName}</p>
                     </div>
                 </div>
