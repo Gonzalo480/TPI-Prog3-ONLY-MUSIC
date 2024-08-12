@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styles from "./songDetail.module.css";
 import DeleteSong from "./DeleteSong";
+import { AuthContext } from '../context/AuthContext';
 
 function SongDetail() {
+  const { user } = useContext(AuthContext);
   const id = window.location.pathname.split("/")[2];
   const [song, setSong] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -144,7 +146,6 @@ function SongDetail() {
     window.location.href = window.location.href;
   };
 
-
   if (isLoading) return <div className="loading-message">Loading...</div>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
@@ -159,8 +160,14 @@ function SongDetail() {
           <p>Géneros: {song.genres.join(", ")}</p>
           <p>Año: {song.year}</p>
           <p>Visitas / Reproducciones:  {song.view_count}</p>
-          <button onClick={() => handleEdit(song.id)}>Editar  <i className="fa-solid fa-pen-to-square"></i></button>
+          {user && user.user__id === song.owner ? (
+            <>
+              <button onClick={() => handleEdit(song.id)}>Editar  <i className="fa-solid fa-pen-to-square"></i></button>
               <DeleteSong songId={song.id} onDeleteSuccess={handleDeleteSuccess} />
+            </>
+          ) : (
+            <span>Sin Permisos de Edición</span>
+          )}
 
           <canvas ref={canvasRef} width="800" height="200" />
           {!audioStarted ? (
@@ -173,7 +180,7 @@ function SongDetail() {
               <button onClick={restartSong}>Reiniciar</button>
             </>
           )}
-                    <audio
+          <audio
             className="audio-element"
             src={song.song_file}
             ref={audioRef}
