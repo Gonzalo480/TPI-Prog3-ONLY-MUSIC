@@ -286,7 +286,7 @@ function PlaylistDetail() {
                 </>
             )}
             <div>
-                <ul ref={playlistRef}>
+                <ul className={styles.playaudio} ref={playlistRef}>
                     {songs.map((song) => (
                         <li key={song.id} >
                             <a className={activeSong === song.song_file ? "active" : "desactive"} href={song.song_file}>{song.title}</a>
