@@ -117,7 +117,7 @@ function UpdateAlbumForm() {
           allowEscapeKey: false,
           allowEnterKey: false
         }).then(() => {
-          window.location.href = `/album/${id}`;
+          window.location.href = `/albumsuser/`;
         });
       } else {
         const errorData = await response.json();
