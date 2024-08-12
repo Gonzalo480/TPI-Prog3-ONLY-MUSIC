@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from "./PlaylistDetail.module.css";
+import styles from './PlaylistDetail.module.css';
 import './estilo.css';
 
 function PlaylistDetail() {
@@ -12,7 +12,7 @@ function PlaylistDetail() {
     const [isLoading, setIsLoading] = useState(false);
     const audioRef = useRef(null);
     const playlistRef = useRef(null);
-    
+
     const [audioStarted, setAudioStarted] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const canvasRef = useRef(null);
@@ -22,36 +22,36 @@ function PlaylistDetail() {
 
     useEffect(() => {
         if (!analyserRef.current || !canvasRef.current || !audioStarted) return;
-    
+
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
         const bufferLength = analyserRef.current.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
-    
+
         const draw = () => {
             animationRef.current = requestAnimationFrame(draw);
-    
+
             analyserRef.current.getByteFrequencyData(dataArray);
-    
-            ctx.fillStyle = "rgb(0, 0, 0)";
+
+            ctx.fillStyle = 'rgb(0, 0, 0)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+
             const barWidth = (canvas.width / bufferLength) * 2.5;
             let barHeight;
             let x = 0;
-    
+
             for (let i = 0; i < bufferLength; i++) {
                 barHeight = dataArray[i] / 2;
-    
+
                 ctx.fillStyle = `rgb(${barHeight + 27}, 233, 19)`;
                 ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-    
+
                 x += barWidth + 1;
             }
         };
-    
+
         draw();
-    
+
         return () => {
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);
@@ -72,24 +72,24 @@ function PlaylistDetail() {
 
     const startAudioContext = async () => {
         if (audioStarted) return;
-    
+
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
         analyserRef.current = audioContextRef.current.createAnalyser();
         analyserRef.current.fftSize = 2048;
-    
+
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
             const source = audioContextRef.current.createMediaStreamSource(stream);
             source.connect(analyserRef.current);
             setAudioStarted(true);
-            
+
             if (songs.length > 0) {
                 audioRef.current.src = songs[0].song_file;
                 audioRef.current.play();
                 setIsPlaying(true);
             }
         } catch (err) {
-            console.error("Error al acceder al stream de audio:", err);
+            console.error('Error al acceder al stream de audio:', err);
         }
     };
 
@@ -129,7 +129,7 @@ function PlaylistDetail() {
                     method: 'GET',
                     headers: {
                         'Content-type': 'application/json',
-                        Authorization: `Token ${token}`,
+                        Authorization: `Bearer ${token}`,
                     },
                     credentials: 'include',
                 }
@@ -140,13 +140,12 @@ function PlaylistDetail() {
                 setPlaylist(data);
                 fetchOwnerName(data.owner);
                 fetchSongsDetails(data.entries);
-                setIsLoading(false);
             } else {
                 setIsError(true);
-                setIsLoading(false);
             }
         } catch (error) {
             setIsError(true);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -156,12 +155,12 @@ function PlaylistDetail() {
 
         try {
             const response = await fetch(
-                `https://sandbox.academiadevelopers.com/harmonyhub/users/${ownerId}/`,
+                `https://sandbox.academiadevelopers.com/users/profiles/${ownerId}/`,
                 {
                     method: 'GET',
                     headers: {
                         'Content-type': 'application/json',
-                        Authorization: `Token ${token}`,
+                        Authorization: `Bearer ${token}`,
                     },
                     credentials: 'include',
                 }
@@ -189,7 +188,7 @@ function PlaylistDetail() {
                         method: 'GET',
                         headers: {
                             'Content-type': 'application/json',
-                            Authorization: `Token ${token}`,
+                            Authorization: `Bearer ${token}`,
                         },
                         credentials: 'include',
                     }
@@ -212,7 +211,7 @@ function PlaylistDetail() {
 
         for (let track in tracks) {
             const link = tracks[track];
-            if (typeof link === "function" || typeof link === "number") continue;
+            if (typeof link === 'function' || typeof link === 'number') continue;
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 const song = this.getAttribute('href');
@@ -224,9 +223,9 @@ function PlaylistDetail() {
             for (let track in tracks) {
                 const link = tracks[track];
                 let nextTrack = parseInt(track) + 1;
-                if (typeof link === "function" || typeof link === "number") continue;
+                if (typeof link === 'function' || typeof link === 'number') continue;
                 if (!this.src) this.src = tracks[0];
-                if (track === (tracks.length - 1)) nextTrack = 0;
+                if (track === tracks.length - 1) nextTrack = 0;
                 if (link.getAttribute('href') === this.src) {
                     const nextLink = tracks[nextTrack];
                     run(nextLink.getAttribute('href'), audio, nextLink);
@@ -241,11 +240,10 @@ function PlaylistDetail() {
         const items = parent.parentElement.getElementsByTagName('li');
 
         for (let item in items) {
-            if (items[item].classList)
-                items[item].classList.remove("active");
+            if (items[item].classList) items[item].classList.remove('active');
         }
 
-        parent.classList.add("active");
+        parent.classList.add('active');
         audio.src = song;
         audio.load();
         audio.play();
@@ -267,19 +265,19 @@ function PlaylistDetail() {
         <div className={styles.playlistviewcontainer}>
             <h2 className={styles.title}>{playlist.name}</h2>
             <br />
-            <p >{`Propietario: ${ownerName}`}</p>
+            <p>{`Propietario: ${ownerName}`}</p>
             <p>{playlist.description}</p>
             <p>{`Pública: ${playlist.public ? 'Sí' : 'No'}`}</p>
             <h3>Canciones:</h3>
-            <div className={styles.canv}  >
-                <canvas ref={canvasRef} width="800" height="200"  />
+            <div className={styles.canv}>
+                <canvas ref={canvasRef} width="800" height="200" />
             </div>
             {!audioStarted ? (
                 <button onClick={startAudioContext}>Reproducir y Visualizar</button>
             ) : (
                 <>
                     <button onClick={togglePlayPause}>
-                        {isPlaying ? "Pausar" : "Reanudar"}
+                        {isPlaying ? 'Pausar' : 'Reanudar'}
                     </button>
                     <button onClick={restartSong}>Reiniciar</button>
                 </>
