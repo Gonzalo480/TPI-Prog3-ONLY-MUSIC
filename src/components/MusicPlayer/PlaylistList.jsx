@@ -149,7 +149,7 @@ function PlaylistList() {
                     </ul>
                     <br /><br />
                     {isLoading && <><div className="loader-container">
-                        <spam className="carga">Cargando más listas de reproducción...</spam>
+                        <span className="carga">Cargando más listas de reproducción...</span>
                         <div className="fading-bars">
                             <div className="bar"></div>
                             <div className="bar"></div>

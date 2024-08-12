@@ -176,7 +176,7 @@ function UserPlaylists() {
                     </ul>
                     <br /><br />
                     {isLoading && <><div className="loader-container">
-                        <spam className="carga">Cargando listas de reproducción...</spam>
+                        <span className="carga">Cargando listas de reproducción...</span>
                         <div className="fading-bars">
                             <div className="bar"></div>
                             <div className="bar"></div>

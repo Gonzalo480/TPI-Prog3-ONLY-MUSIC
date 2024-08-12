@@ -110,7 +110,7 @@ export default function ArtistList() {
                     </ul>
                     <br /><br />
                     {isLoading && <><div className="loader-container">
-                        <spam className="carga">Cargando más artistas...</spam>
+                        <span className="carga">Cargando más artistas...</span>
                         <div className="fading-bars">
                             <div className="bar"></div>
                             <div className="bar"></div>

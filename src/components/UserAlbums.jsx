@@ -165,7 +165,7 @@ export default function UserAlbumList() {
                     </ul>
                     <br /><br />
                     {isLoading && <><div class="loader-container">
-                        <spam className="carga" >Cargando álbumes...</spam>
+                        <span className="carga" >Cargando álbumes...</span>
                         <div class="fading-bars">
                         <div class="bar"></div>
                         <div class="bar"></div>
