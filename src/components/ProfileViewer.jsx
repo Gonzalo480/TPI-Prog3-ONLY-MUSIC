@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './profileViewer.module.css';
+import { AuthContext } from '../context/AuthContext';
 
 const ProfileViewer = () => {
   const [profile, setProfile] = useState(null);
@@ -8,6 +9,7 @@ const ProfileViewer = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const token = localStorage.getItem('token');
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchProfile = async () => {
