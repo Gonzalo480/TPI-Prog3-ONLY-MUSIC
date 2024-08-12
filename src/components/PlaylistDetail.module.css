@@ -100,3 +100,10 @@ audio {
 .active {
     color: var(--neon-color);
 }
+
+.desactive {
+    color: var(--neon-new);
+}
+.reset {
+    text-decoration: none;
+}
