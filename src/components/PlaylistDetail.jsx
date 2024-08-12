@@ -160,7 +160,7 @@ function PlaylistDetail() {
                     method: 'GET',
                     headers: {
                         'Content-type': 'application/json',
-                        Authorization: `Token ${token}`,
+                        Authorization: `Bearer ${token}`,
                     },
                     credentials: 'include',
                 }
