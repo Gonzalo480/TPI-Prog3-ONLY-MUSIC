@@ -96,3 +96,7 @@ audio {
     text-decoration: none;
     color: var(--text-color);
 }
+
+.active {
+    color: var(--neon-color);
+}
