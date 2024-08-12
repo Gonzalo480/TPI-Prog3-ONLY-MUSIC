@@ -108,7 +108,7 @@ function UpdateGenreForm() {
           icon: 'success',
           confirmButtonText: 'OK',
         }).then(() => {
-          window.location.href = `/genres`;
+          window.location.href = `/genresuser/`;
         });
       } else {
         const errorData = await response.json();
