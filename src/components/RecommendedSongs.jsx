@@ -119,7 +119,7 @@ function RecommendedSongs() {
           alt="imagen usuario"
         />
         &nbsp;&nbsp;&nbsp;
-        <h1>Bienvenido {user.first_name}</h1>
+        <h1>Hola {user.first_name}</h1>
       </span>
       <h2>Canciones recomendadas para ti:</h2>
       <br />
