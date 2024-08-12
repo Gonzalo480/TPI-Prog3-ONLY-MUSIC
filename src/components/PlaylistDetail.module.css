@@ -92,8 +92,4 @@ audio {
     padding-bottom: 20px;
 }
 
-.playaudio a {
-    text-decoration: none;
-    color: var(--text-color);
-}
 
