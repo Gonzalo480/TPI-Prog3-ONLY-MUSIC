@@ -15,7 +15,8 @@ function Profile() {
                     {user ? (
                         <div>
                             <h1 className={styles.profileheading}>Perfil</h1>
-                            <img src={isValidImage ? "user.png" : `http://sandbox.academiadevelopers.com/${user.image}`} alt="imagen usuario" />
+                            <img src={user.image === null
+                            ? "user.png" : `http://sandbox.academiadevelopers.com/${user.image}`} alt="imagen usuario" />
                             <br />
                             <p className={styles.profiletext}>ID: {user.user__id}</p>
                             <p className={styles.profiletext}>Usuario: {user.username}</p>
