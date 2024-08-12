@@ -4,7 +4,7 @@ import styles from './profile.module.css';
 
 function Profile() {
     const { user, isLoading, logout } = useContext(AuthContext);
-    const isValidImage = user.image && typeof user.image === 'string' && user.image.trim() !== '';
+
 
     if (isLoading) return <div className={styles.loadingmessage}>Loading...</div>;
 
