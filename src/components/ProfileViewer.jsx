@@ -8,7 +8,6 @@ const ProfileViewer = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const token = localStorage.getItem('token');
-  const isValidImage = profile.image && typeof profile.image === 'string' && profile.image.trim() !== '';
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -46,7 +45,7 @@ const ProfileViewer = () => {
       <div className={styles.profilecard}>
       <h1 className={styles.profileheading}>Perfil de Usuario</h1>
 
-        <img src={isValidImage ? "user.png" : `http://sandbox.academiadevelopers.com/${profile.image}`} alt="imagen usuario" />
+        <img src={user.image === null ? "user.png" : `http://sandbox.academiadevelopers.com/${profile.image}`} alt="imagen usuario" />
         <br /><br />
         <p className={styles.profiletext}>Nombre de usuario: {profile.username}</p>
         <p className={styles.profiletext}>Nombre: {profile.first_name} {profile.last_name}</p>
