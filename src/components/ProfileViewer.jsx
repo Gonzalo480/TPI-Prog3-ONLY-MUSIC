@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './profileViewer.module.css';
-import { AuthContext } from '../context/AuthContext';
 
 const ProfileViewer = () => {
   const [profile, setProfile] = useState(null);
@@ -9,7 +8,6 @@ const ProfileViewer = () => {
   const [error, setError] = useState(null);
   const { id } = useParams();
   const token = localStorage.getItem('token');
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -47,7 +45,7 @@ const ProfileViewer = () => {
       <div className={styles.profilecard}>
       <h1 className={styles.profileheading}>Perfil de Usuario</h1>
 
-        <img src={user.image === null ? "user.png" : `http://sandbox.academiadevelopers.com/${profile.image}`} alt="imagen usuario" />
+        <img src={profile.image === null ? "user.png" : `http://sandbox.academiadevelopers.com/${profile.image}`} alt="imagen usuario" />
         <br /><br />
         <p className={styles.profiletext}>Nombre de usuario: {profile.username}</p>
         <p className={styles.profiletext}>Nombre: {profile.first_name} {profile.last_name}</p>
