@@ -16,11 +16,7 @@ function NavBar() {
       <nav>
         <div className={styles.navlinks}>
           
-          {token ? (
           <Link className={styles.btn} to="/songs">Canciones</Link>
-        ) : (
-          <></>
-        )}
           <Link className={styles.btn} to="/artist">Artistas</Link>
           <Link className={styles.btn} to="/albums">Álbumes</Link>
           <Link className={styles.btn} to="/genres">Géneros</Link>
