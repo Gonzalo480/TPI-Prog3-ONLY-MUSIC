@@ -168,7 +168,7 @@ function PlaylistDetail() {
 
             if (response.ok) {
                 const data = await response.json();
-                setOwnerName(data.first_name);
+                setOwnerName(`${data.first_name} ${data.last_name}`);
             } else {
                 setOwnerName('Desconocido');
             }
