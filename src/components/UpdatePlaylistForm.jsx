@@ -117,7 +117,7 @@ function UpdatePlaylistForm() {
           allowEscapeKey: false,
           allowEnterKey: false
         }).then(() => {
-          window.location.href = `/playlist/${id}`;
+          window.location.href = `/userplaylist/`;
         });
       } else {
         const errorData = await response.json();
