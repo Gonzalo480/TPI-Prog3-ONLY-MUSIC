@@ -117,7 +117,7 @@ function UpdateArtistForm() {
           allowEscapeKey: false,
           allowEnterKey: false
         }).then(() => {
-          window.location.href = `/artist`;
+          window.location.href = `/userartist/`;
         });
       } else {
         const errorData = await response.json();
