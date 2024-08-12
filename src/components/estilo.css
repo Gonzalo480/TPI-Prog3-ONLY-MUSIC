@@ -43,3 +43,15 @@ audio {
     font-size: 18px;
     margin-top: 50px;
 }
+
+
+.active {
+    color: var(--neon-color);
+    text-decoration: none;
+}
+
+.desactive {
+    color: var(--neon-new);
+    text-decoration: none;
+}
+
