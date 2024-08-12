@@ -15,6 +15,7 @@ function PlaylistDetail() {
 
     const [audioStarted, setAudioStarted] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [activeSong, setActiveSong] = useState(null);  // Estado para la canción activa
     const canvasRef = useRef(null);
     const audioContextRef = useRef(null);
     const analyserRef = useRef(null);
@@ -84,6 +85,7 @@ function PlaylistDetail() {
             setAudioStarted(true);
 
             if (songs.length > 0) {
+                setActiveSong(songs[0].song_file);  // Establecer la primera canción como activa
                 audioRef.current.src = songs[0].song_file;
                 audioRef.current.play();
                 setIsPlaying(true);
@@ -244,6 +246,7 @@ function PlaylistDetail() {
         }
 
         parent.classList.add('active');
+        setActiveSong(song);  // Establecer la canción activa
         audio.src = song;
         audio.load();
         audio.play();
@@ -282,24 +285,19 @@ function PlaylistDetail() {
                     <button onClick={restartSong}>Reiniciar</button>
                 </>
             )}
-            <audio id="audio" preload="auto" ref={audioRef} controls></audio>
             <div>
                 <ul ref={playlistRef}>
-                    {songs.length === 0 ? (
-                        <p>No hay canciones en esta lista de reproducción.</p>
-                    ) : (
-                        songs.map((song, index) => (
-                            <li key={index}>
-                                <a href={song.song_file}>
-                                    {song.title}
-                                </a>
-                            </li>
-                        ))
-                    )}
+                    {songs.map((song) => (
+                        <li key={song.id} className={activeSong === song.song_file ? 'active' : ''}>
+                            <a href={song.song_file}>{song.title}</a>
+                        </li>
+                    ))}
                 </ul>
+                <audio ref={audioRef} controls></audio>
             </div>
         </div>
     );
 }
 
 export default PlaylistDetail;
+
