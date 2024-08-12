@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from "./PlaylistDetail.module.css";
 import './estilo.css';
-    
+
 function PlaylistDetail() {
     const { id } = useParams();
     const [playlist, setPlaylist] = useState(null);
@@ -20,7 +20,6 @@ function PlaylistDetail() {
     const analyserRef = useRef(null);
     const animationRef = useRef(null);
 
-
     useEffect(() => {
         if (!analyserRef.current || !canvasRef.current || !audioStarted) return;
     
@@ -30,47 +29,46 @@ function PlaylistDetail() {
         const dataArray = new Uint8Array(bufferLength);
     
         const draw = () => {
-          animationRef.current = requestAnimationFrame(draw);
+            animationRef.current = requestAnimationFrame(draw);
     
-          analyserRef.current.getByteFrequencyData(dataArray);
+            analyserRef.current.getByteFrequencyData(dataArray);
     
-          ctx.fillStyle = "rgb(0, 0, 0)";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgb(0, 0, 0)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-          const barWidth = (canvas.width / bufferLength) * 2.5;
-          let barHeight;
-          let x = 0;
+            const barWidth = (canvas.width / bufferLength) * 2.5;
+            let barHeight;
+            let x = 0;
     
-          for (let i = 0; i < bufferLength; i++) {
-            barHeight = dataArray[i] / 2;
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i] / 2;
     
-            ctx.fillStyle = `rgb(${barHeight + 27}, 233, 19)`;
-            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                ctx.fillStyle = `rgb(${barHeight + 27}, 233, 19)`;
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
     
-            x += barWidth + 1;
-          }
+                x += barWidth + 1;
+            }
         };
     
         draw();
     
         return () => {
-          if (animationRef.current) {
-            cancelAnimationFrame(animationRef.current);
-          }
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
         };
-      }, [audioStarted]);
-    
+    }, [audioStarted]);
+
     const restartSong = () => {
         audioRef.current.currentTime = 0;
         if (!isPlaying) {
-          audioRef.current.play();
-          if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-            audioContextRef.current.resume();
-          }
-          setIsPlaying(true);
+            audioRef.current.play();
+            if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+                audioContextRef.current.resume();
+            }
+            setIsPlaying(true);
         }
-      };
-    
+    };
 
     const startAudioContext = async () => {
         if (audioStarted) return;
@@ -80,34 +78,34 @@ function PlaylistDetail() {
         analyserRef.current.fftSize = 2048;
     
         try {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-          const source = audioContextRef.current.createMediaStreamSource(stream);
-          source.connect(analyserRef.current);
-          setAudioStarted(true);
-          
-          if (songs.length > 0) {
-            audioRef.current.src = songs[0].song_file;
-            audioRef.current.play();
-            setIsPlaying(true);
-          }
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+            const source = audioContextRef.current.createMediaStreamSource(stream);
+            source.connect(analyserRef.current);
+            setAudioStarted(true);
+            
+            if (songs.length > 0) {
+                audioRef.current.src = songs[0].song_file;
+                audioRef.current.play();
+                setIsPlaying(true);
+            }
         } catch (err) {
-          console.error("Error al acceder al stream de audio:", err);
+            console.error("Error al acceder al stream de audio:", err);
         }
-      };
-    
+    };
+
     const togglePlayPause = () => {
-    if (isPlaying) {
-        audioRef.current.pause();
-        if (audioContextRef.current) {
-        audioContextRef.current.suspend();
+        if (isPlaying) {
+            audioRef.current.pause();
+            if (audioContextRef.current) {
+                audioContextRef.current.suspend();
+            }
+        } else {
+            audioRef.current.play();
+            if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
+                audioContextRef.current.resume();
+            }
         }
-    } else {
-        audioRef.current.play();
-        if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-        audioContextRef.current.resume();
-        }
-    }
-    setIsPlaying(!isPlaying);
+        setIsPlaying(!isPlaying);
     };
 
     useEffect(() => {
@@ -131,7 +129,7 @@ function PlaylistDetail() {
                     method: 'GET',
                     headers: {
                         'Content-type': 'application/json',
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Token ${token}`,
                     },
                     credentials: 'include',
                 }
@@ -191,7 +189,7 @@ function PlaylistDetail() {
                         method: 'GET',
                         headers: {
                             'Content-type': 'application/json',
-                            Authorization: `Bearer ${token}`,
+                            Authorization: `Token ${token}`,
                         },
                         credentials: 'include',
                     }
@@ -274,40 +272,36 @@ function PlaylistDetail() {
             <p>{`Pública: ${playlist.public ? 'Sí' : 'No'}`}</p>
             <h3>Canciones:</h3>
             <div className={styles.canv}  >
-            <canvas ref={canvasRef} width="800" height="200"  />
+                <canvas ref={canvasRef} width="800" height="200"  />
             </div>
-          {!audioStarted ? (
-            <button onClick={startAudioContext}>Reproducir y Visualizar</button>
-          ) : (
-            <>
-              <button onClick={togglePlayPause}>
-                {isPlaying ? "Pausar" : "Reanudar"}
-              </button>
-              <button onClick={restartSong}>Reiniciar</button>
-            </>
-          )}
-
-            <audio id="audio" preload="auto" tabindex="0" controls ref={audioRef}>
-                <source src={songs.length > 0 ? songs[0].song_file : ''} />
-            </audio>
-            <ul className={styles.playaudio} id="playlist" ref={playlistRef}>
-                {songs.length > 0 ? (
-                    songs.map((song, index) => (
-                        <li key={song.id} className={index === 0 ? "active" : ""}>
-                            <a href={song.song_file}>
-                                {song.title}
-                            </a>
-                        </li>
-                    ))
-                ) : (
-                    <p>No hay canciones en esta lista de reproducción.</p>
-                )}
-            </ul>
-            <br />
+            {!audioStarted ? (
+                <button onClick={startAudioContext}>Reproducir y Visualizar</button>
+            ) : (
+                <>
+                    <button onClick={togglePlayPause}>
+                        {isPlaying ? "Pausar" : "Reanudar"}
+                    </button>
+                    <button onClick={restartSong}>Reiniciar</button>
+                </>
+            )}
+            <audio id="audio" preload="auto" ref={audioRef} controls></audio>
+            <div>
+                <ul ref={playlistRef}>
+                    {songs.length === 0 ? (
+                        <p>No hay canciones en esta lista de reproducción.</p>
+                    ) : (
+                        songs.map((song, index) => (
+                            <li key={index}>
+                                <a href={song.song_file}>
+                                    {song.title}
+                                </a>
+                            </li>
+                        ))
+                    )}
+                </ul>
+            </div>
         </div>
     );
 }
 
-
-    
 export default PlaylistDetail;
