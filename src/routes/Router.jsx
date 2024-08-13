@@ -34,6 +34,7 @@ import UpdateGenreForm from '../components/UpdateGenreForm';
 import UserPlaylists from '../components/UserPlaylists';
 import UserArtists from '../components/UserArtists';
 import UserGenres from '../components/UserGenres';
+import SongListnotoken from '../components/SongListnotoken';
 
 
 const Router = createBrowserRouter(
@@ -57,7 +58,10 @@ const Router = createBrowserRouter(
       <Route path="/newartist" element={<NewArtistForm />} />
       <Route path="/newgenre" element={<NewGenreForm />} />
       <Route path="/newplaylist" element={<NewPlaylistForm />} />
-      <Route path="/songs" element={<SongList />} />
+      <Route
+        path="/songs"
+        element={localStorage.getItem("token") ? <><SongList /></> : <> < SongListnotoken /> </>}/>
+ 
       <Route path="/song/:id" element={<SongDetail />} />
       <Route path="/songuser" element={<SongUser />} />
       <Route path="/genresuser" element={<UserGenres />} />
